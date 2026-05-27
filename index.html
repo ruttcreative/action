@@ -894,13 +894,6 @@ async function enableNotifications(){
   }
 }
 
-// Register service worker
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/service-worker.js', {scope:'/'})
-    .then(r => console.log('SW registered:', r.scope))
-    .catch(e => console.error('SW error:', e));
-}
-
 function sendNotif(title,body,tag){
   if(!('Notification' in window)||Notification.permission!=='granted'||!inWindow()) return;
   new Notification(title,{body,tag:tag||'ac',icon:'⚡'});
