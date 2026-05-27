@@ -7,6 +7,19 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Action(able)">
 <title>Action(able)</title>
+<link rel="manifest" href="/manifest.json">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "28167ea7-c7ed-41a7-a9c2-2fe8a8151aa9",
+      serviceWorkerParam: { scope: "/" },
+      serviceWorkerPath: "/service-worker.js",
+      notifyButton: { enable: false },
+    });
+  });
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap');
 
@@ -865,12 +878,27 @@ function updateAll(){updateStats();updateSteps();updateWeight();renderHistory();
 function inWindow(){const h=new Date().getHours();return h>=8&&h<21;}
 
 async function enableNotifications(){
-  if(!('Notification' in window)){alert('Open in Safari and add to home screen for notifications.');return;}
-  const perm=await Notification.requestPermission();
-  if(perm==='granted'){
-    document.getElementById('notif-banner').innerHTML=`<div class="notif-icon">✅</div><div class="notif-text"><strong>Prompts active 8am–9pm</strong><small>Mirroring to Apple Watch</small></div>`;
-    scheduleAll();
+  if(typeof OneSignal === 'undefined' && (!window.OneSignalDeferred)){
+    alert('OneSignal not loaded. Check your App ID is set correctly.');
+    return;
   }
+  try {
+    window.OneSignalDeferred.push(async function(OneSignal) {
+      const granted = await OneSignal.Notifications.requestPermission();
+      if(granted){
+        document.getElementById('notif-banner').innerHTML=`<div class="notif-icon">✅</div><div class="notif-text"><strong>Prompts active 8am–9pm</strong><small>Mirroring to Apple Watch</small></div>`;
+      }
+    });
+  } catch(e) {
+    console.error('OneSignal error:', e);
+  }
+}
+
+// Register service worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/service-worker.js', {scope:'/'})
+    .then(r => console.log('SW registered:', r.scope))
+    .catch(e => console.error('SW error:', e));
 }
 
 function sendNotif(title,body,tag){
