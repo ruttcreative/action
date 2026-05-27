@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Action(able)">
 <title>Action(able)</title>
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="/action/manifest.json">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -15,7 +15,7 @@
     await OneSignal.init({
       appId: "28167ea7-c7ed-41a7-a9c2-2fe8a8151aa9",
       serviceWorkerParam: { scope: "/" },
-      sserviceWorkerPath: "/OneSignalSDKWorker.js",
+     serviceWorkerPath: "/action/OneSignalSDKWorker.js",
       notifyButton: { enable: false },
     });
   });
