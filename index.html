@@ -18,14 +18,9 @@
   --text: #e8e6f0;
   --muted: #6b6880;
   --accent: #c8ff47;
-  --run: #ff6b47;
-  --reflect: #47c8ff;
-  --connect: #ff47c8;
-  --hydrate: #47ffb8;
-  --house: #ffb347;
-  --meds: #ff4747;
-  --encourage: #c8a8ff;
   --streak: #ffb347;
+  --encourage: #c8a8ff;
+  --weight: #a8d8ff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -36,7 +31,7 @@ body {
   font-family: 'Fraunces', serif;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-bottom: 80px;
+  padding-bottom: 90px;
 }
 
 body::before {
@@ -56,134 +51,13 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
-
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.2rem;
-  line-height: 1;
-  letter-spacing: 1px;
-}
+.logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; letter-spacing: 1px; }
 .logo em { color: var(--accent); font-style: normal; }
-
 .header-right { text-align: right; }
-.clock {
-  font-family: 'DM Mono', monospace;
-  font-size: 1.1rem;
-  color: var(--accent);
-  line-height: 1;
-}
-.datestr {
-  font-size: 0.65rem;
-  color: var(--muted);
-  font-style: italic;
-  margin-top: 2px;
-}
-
-/* TODDLER MODE BADGE */
-.toddler-badge {
-  margin: 0 20px 12px;
-  background: linear-gradient(135deg, #ff9f47, #ff6b47);
-  border-radius: 12px;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  display: none;
-}
-.toddler-badge.visible { display: flex; }
-.toddler-badge span { font-size: 1.2rem; }
-.toddler-badge p { font-size: 0.78rem; font-weight: 700; color: #0a0a0f; line-height: 1.3; }
-.toddler-badge small { font-size: 0.65rem; color: rgba(0,0,0,0.6); font-family: 'DM Mono', monospace; }
-
-/* ── STREAK BAR ── */
-.streak-bar {
-  margin: 0 20px 14px;
-  background: var(--surface);
-  border-radius: 16px;
-  padding: 10px 16px;
-  border: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.streak-item { text-align: center; }
-.streak-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.7rem;
-  color: var(--streak);
-  line-height: 1;
-}
-.streak-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.55rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 1px;
-}
-.streak-div { width: 1px; height: 32px; background: var(--border); }
-
-/* ── STEPS WIDGET ── */
-.steps-widget {
-  margin: 0 20px 14px;
-  background: var(--surface);
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.steps-icon { font-size: 1.6rem; }
-.steps-info { flex: 1; }
-.steps-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.55rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-.steps-bar-wrap {
-  height: 6px;
-  background: var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 4px;
-}
-.steps-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: var(--accent);
-  transition: width 0.5s ease;
-}
-.steps-count {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--text);
-}
-.steps-count em { color: var(--muted); font-style: normal; }
-.steps-actions { display: flex; gap: 6px; }
-.steps-btn {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.steps-btn:active { background: var(--border); }
-.steps-btn.hit {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-  font-weight: 700;
-}
+.clock { font-family: 'DM Mono', monospace; font-size: 1.1rem; color: var(--accent); line-height: 1; }
+.datestr { font-size: 0.65rem; color: var(--muted); font-style: italic; margin-top: 2px; }
 
 /* ── NOTIF BANNER ── */
 .notif-banner {
@@ -196,170 +70,181 @@ body::before {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  transition: border-color 0.2s;
 }
-.notif-banner:active { border-color: var(--accent); }
 .notif-icon { font-size: 1.1rem; }
 .notif-text strong { font-size: 0.8rem; color: var(--accent); display: block; }
 .notif-text small { font-size: 0.65rem; color: var(--muted); font-family: 'DM Mono', monospace; }
 
-/* ── PROMPT CARD ── */
-.prompt-wrap { padding: 0 20px; margin-bottom: 10px; }
+/* ── ENCOURAGE ── */
+.encourage-card {
+  margin: 0 20px 12px;
+  border-left: 3px solid var(--encourage);
+  background: var(--surface);
+  border-radius: 0 14px 14px 0;
+  padding: 10px 14px;
+}
+.encourage-text { font-size: 0.88rem; font-style: italic; line-height: 1.5; color: var(--text); }
+.encourage-attr { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); margin-top: 4px; }
 
+/* ── STEPS WIDGET ── */
+.steps-widget {
+  margin: 0 20px 12px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.steps-icon { flex-shrink: 0; }
+.steps-info { flex: 1; }
+.steps-label { font-family: 'DM Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
+.steps-bar-wrap { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+.steps-bar-fill { height: 100%; border-radius: 3px; background: var(--accent); transition: width 0.5s ease; }
+.steps-count { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text); }
+.steps-count em { color: var(--muted); font-style: normal; }
+.update-btn {
+  background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+  font-family: 'DM Mono', monospace; font-size: 0.65rem; padding: 6px 10px;
+  border-radius: 8px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+}
+
+/* ── WEIGHT WIDGET ── */
+.weight-widget {
+  margin: 0 20px 12px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.weight-top {
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.weight-info { flex: 1; }
+.weight-label { font-family: 'DM Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 3px; }
+.weight-current { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--weight); line-height: 1; }
+.weight-current span { font-size: 0.9rem; color: var(--muted); font-family: 'DM Mono', monospace; font-weight: 400; margin-left: 4px; }
+.weight-delta { font-family: 'DM Mono', monospace; font-size: 0.65rem; margin-top: 1px; }
+.weight-graph { padding: 10px 14px 10px; }
+.graph-label { font-family: 'DM Mono', monospace; font-size: 0.52rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+.graph-wrap { position: relative; height: 56px; }
+canvas#weight-canvas { width: 100%; height: 56px; display: block; }
+.graph-empty { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); font-style: italic; text-align: center; padding: 14px 0; }
+
+/* ── PROMPT CARD ── */
+.prompt-wrap { padding: 0 20px; margin-bottom: 12px; }
 .prompt-card {
   background: var(--surface);
   border-radius: 20px;
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: transform 0.15s;
 }
-.prompt-card:active { transform: scale(0.99); }
-
 .prompt-stripe { height: 4px; width: 100%; }
-
 .prompt-body { padding: 14px 16px 13px; }
+.prompt-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.prompt-cat { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; }
+.prompt-dur { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); background: var(--surface2); padding: 2px 8px; border-radius: 20px; }
+.prompt-text { font-size: 1.08rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+.prompt-sub { font-size: 0.78rem; color: var(--muted); font-style: italic; line-height: 1.45; margin-bottom: 12px; }
 
-.prompt-meta {
+/* ── CATEGORY JUMP BUTTONS ── */
+.cat-jumps { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.cat-btn {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 8px;
-}
-.prompt-cat {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-.prompt-dur {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--muted);
+  gap: 3px;
+  padding: 7px 10px 6px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
   background: var(--surface2);
-  padding: 2px 8px;
-  border-radius: 20px;
-}
-
-.prompt-text {
-  font-size: 1.08rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 6px;
-}
-.prompt-sub {
-  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
   color: var(--muted);
-  font-style: italic;
-  line-height: 1.45;
-  margin-bottom: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  flex: 1;
+  min-width: 0;
 }
+.cat-btn:active { transform: scale(0.94); }
+.cat-btn.active { border-color: currentColor; background: var(--surface); }
+.cat-btn.done-cat { opacity: 0.38; }
+.cat-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+/* ── PROMPT BUTTONS ── */
 .prompt-btns { display: flex; gap: 7px; }
 .btn-done {
-  flex: 1;
-  padding: 10px;
-  border-radius: 12px;
-  border: none;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
-  color: #0a0a0f;
+  flex: 1; padding: 10px; border-radius: 12px; border: none;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 1px;
+  cursor: pointer; transition: opacity 0.15s, transform 0.1s; color: #0a0a0f;
 }
 .btn-done:active { transform: scale(0.97); opacity: 0.85; }
 .btn-sm {
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; cursor: pointer;
 }
-.btn-sm:hover { border-color: var(--muted); color: var(--text); }
 
-/* ── PROGRESS DOTS ── */
-.dots {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  margin: 8px 0 12px;
-}
-.dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--border);
-  transition: background 0.3s, transform 0.3s;
-}
-.dot.done { background: var(--accent); transform: scale(1.3); }
-.dot.active { background: var(--muted); transform: scale(1.1); }
-
-/* ── ENCOURAGEMENT ── */
-.encourage-card {
-  margin: 0 20px 14px;
-  border-left: 3px solid var(--encourage);
+/* ── STREAK BAR ── */
+.streak-bar {
+  margin: 0 20px 12px;
   background: var(--surface);
-  border-radius: 0 14px 14px 0;
-  padding: 11px 14px;
+  border-radius: 14px;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.encourage-text {
-  font-size: 0.88rem;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--text);
-}
-.encourage-attr {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.58rem;
-  color: var(--muted);
-  margin-top: 5px;
-}
+.streak-item { text-align: center; }
+.streak-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--streak); line-height: 1; }
+.streak-label { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
+.streak-div { width: 1px; height: 28px; background: var(--border); }
 
-/* ── SECTION LABEL ── */
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.58rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--muted);
-  padding: 0 20px;
-  margin-bottom: 10px;
+/* ── TODDLER BADGE ── */
+.toddler-badge {
+  margin: 0 20px 12px;
+  background: linear-gradient(135deg, #ff9f47, #ff6b47);
+  border-radius: 12px;
+  padding: 7px 14px;
+  display: none;
+  align-items: center;
+  gap: 10px;
 }
+.toddler-badge.visible { display: flex; }
+.toddler-badge p { font-size: 0.78rem; font-weight: 700; color: #0a0a0f; }
+.toddler-badge small { font-size: 0.62rem; color: rgba(0,0,0,0.55); font-family: 'DM Mono', monospace; display: block; }
 
-/* ── HABIT GRID ── */
-.habit-grid {
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 9px;
-  margin-bottom: 16px;
-}
-.habit-card {
+
+/* ── CAT STREAKS ── */
+.cat-streaks {
+  margin: 6px 20px 12px;
   background: var(--surface);
   border-radius: 14px;
   border: 1px solid var(--border);
-  padding: 12px 12px 10px;
-  cursor: pointer;
-  transition: border-color 0.2s, transform 0.1s;
-  position: relative;
-  overflow: hidden;
+  padding: 8px 14px;
 }
-.habit-card:active { transform: scale(0.97); }
-.habit-card.done { border-color: currentColor; }
-.habit-card.done::after {
-  content: '✓';
-  position: absolute;
-  top: 8px; right: 10px;
-  font-size: 0.75rem;
+.cat-streak-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
   font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
 }
-.habit-icon { font-size: 1.3rem; margin-bottom: 5px; }
-.habit-name { font-size: 0.8rem; font-weight: 700; margin-bottom: 2px; line-height: 1.2; }
-.habit-streak { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--streak); }
-
+.cat-streak-row:last-child { border-bottom: none; }
+.cat-streak-name { color: var(--muted); }
+.cat-streak-name.done { color: var(--text); }
+.cat-streak-val { color: var(--streak); }
+.cat-streak-val.zero { color: var(--border); }
 /* ── VIEWS ── */
 .view { display: none; }
 .view.active { display: block; }
@@ -367,99 +252,39 @@ body::before {
 /* ── HISTORY ── */
 .history-list { padding: 0 20px; }
 .history-item {
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
 }
 .history-name { font-size: 0.85rem; line-height: 1.3; }
 .history-time { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); margin-top: 2px; }
-.history-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.58rem;
-  padding: 3px 8px;
-  border-radius: 20px;
-  background: var(--surface2);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+.history-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; padding: 3px 8px; border-radius: 20px; background: var(--surface2); white-space: nowrap; flex-shrink: 0; }
 
 /* ── SETTINGS ── */
 .settings-block { padding: 0 20px; margin-bottom: 20px; }
-.settings-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-.setting-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  gap: 12px;
-}
+.settings-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--muted); margin-bottom: 10px; }
+.setting-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); gap: 12px; }
 .setting-name { font-size: 0.85rem; }
 .setting-sub { font-size: 0.68rem; color: var(--muted); font-style: italic; margin-top: 2px; }
 .setting-val { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--accent); flex-shrink: 0; }
-
-.toggle {
-  width: 42px; height: 24px;
-  border-radius: 12px;
-  background: var(--border);
-  position: relative;
-  cursor: pointer;
-  border: none;
-  transition: background 0.3s;
-  flex-shrink: 0;
-}
+.toggle { width: 42px; height: 24px; border-radius: 12px; background: var(--border); position: relative; cursor: pointer; border: none; transition: background 0.3s; flex-shrink: 0; }
 .toggle.on { background: var(--accent); }
-.toggle::after {
-  content: '';
-  position: absolute;
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  background: white;
-  top: 3px; left: 3px;
-  transition: transform 0.3s;
-}
+.toggle::after { content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: white; top: 3px; left: 3px; transition: transform 0.3s; }
 .toggle.on::after { transform: translateX(18px); }
+
+/* ── SECTION LABEL ── */
+.section-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); padding: 0 20px; margin-bottom: 8px; }
 
 /* ── NAV ── */
 .nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  max-width: 430px;
-  margin: 0 auto;
-  padding: 10px 20px 24px;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid var(--border);
-  background: rgba(10,10,15,0.95);
-  backdrop-filter: blur(10px);
-  z-index: 100;
+  position: fixed; bottom: 0; left: 0; right: 0; max-width: 430px; margin: 0 auto;
+  padding: 10px 20px 24px; display: flex; justify-content: space-around;
+  border-top: 1px solid var(--border); background: rgba(10,10,15,0.96);
+  backdrop-filter: blur(12px); z-index: 100;
 }
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-  opacity: 0.45;
-  transition: opacity 0.2s;
-}
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; opacity: 0.4; transition: opacity 0.2s; }
 .nav-item.active { opacity: 1; }
 .nav-icon { font-size: 1.25rem; }
-.nav-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.52rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+.nav-label { font-family: 'DM Mono', monospace; font-size: 0.52rem; text-transform: uppercase; letter-spacing: 1px; }
 
 /* ── FLASH ── */
 @keyframes flashAnim {
@@ -467,70 +292,18 @@ body::before {
   40% { opacity: 1; transform: translate(-50%,-50%) scale(1.05); }
   100% { opacity: 0; transform: translate(-50%,-50%) scale(1); }
 }
-.flash {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  background: var(--accent);
-  color: var(--bg);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  padding: 14px 28px;
-  border-radius: 14px;
-  z-index: 9999;
-  animation: flashAnim 1.2s ease forwards;
-  pointer-events: none;
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
+.flash { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: var(--accent); color: var(--bg); font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; padding: 14px 28px; border-radius: 14px; z-index: 9999; animation: flashAnim 1.2s ease forwards; pointer-events: none; letter-spacing: 2px; white-space: nowrap; }
 
-/* step input modal */
-.modal-bg {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 500;
-  display: flex; align-items: center; justify-content: center;
-  display: none;
-}
+/* ── MODALS ── */
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 500; display: none; align-items: center; justify-content: center; }
 .modal-bg.open { display: flex; }
-.modal {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px 20px;
-  width: 280px;
-  text-align: center;
-}
-.modal h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-}
-.modal input {
-  width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: 'DM Mono', monospace;
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  outline: none;
-}
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 22px 20px; width: 290px; text-align: center; }
+.modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 6px; }
+.modal p { font-size: 0.75rem; color: var(--muted); font-style: italic; margin-bottom: 14px; }
+.modal input { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 1.4rem; text-align: center; padding: 12px; border-radius: 12px; margin-bottom: 14px; outline: none; }
 .modal input:focus { border-color: var(--accent); }
 .modal-btns { display: flex; gap: 8px; }
-.modal-btns button {
-  flex: 1; padding: 10px;
-  border-radius: 10px;
-  border: none;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
+.modal-btns button { flex: 1; padding: 10px; border-radius: 10px; border: none; font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 1px; cursor: pointer; }
 .modal-confirm { background: var(--accent); color: var(--bg); }
 .modal-cancel { background: var(--border); color: var(--text); }
 </style>
@@ -538,7 +311,7 @@ body::before {
 <body>
 <div class="app">
 
-  <!-- ══ HOME VIEW ══ -->
+  <!-- HOME VIEW -->
   <div class="view active" id="view-home">
 
     <div class="header">
@@ -549,20 +322,82 @@ body::before {
       </div>
     </div>
 
-    <!-- Toddler Mode -->
-    <div class="toddler-badge" id="toddler-badge">
-      <span>👦</span>
-      <div>
-        <p>Toddler Day Mode</p>
-        <small>Prompts adapted for the little guy</small>
+    <div class="notif-banner" id="notif-banner" onclick="enableNotifications()">
+      <div class="notif-icon">🔔</div>
+      <div class="notif-text">
+        <strong>Enable smart prompts</strong>
+        <small>Tap · mirrors to Apple Watch</small>
       </div>
     </div>
 
-    <!-- Streak -->
+    <!-- PROMPT CARD — FIRST -->
+    <div class="prompt-wrap">
+      <div class="prompt-card">
+        <div class="prompt-stripe" id="p-stripe"></div>
+        <div class="prompt-body">
+          <div class="prompt-meta">
+            <div class="prompt-cat" id="p-cat">—</div>
+            <div class="prompt-dur" id="p-dur">—</div>
+          </div>
+          <div class="prompt-text" id="p-text">Loading...</div>
+          <div class="prompt-sub" id="p-sub"></div>
+          <div class="cat-jumps" id="cat-jumps"></div>
+          <div class="prompt-btns">
+            <button class="btn-done" id="btn-done" onclick="markDone()">Done ✓</button>
+            <button class="btn-sm" onclick="skipPrompt()">Skip</button>
+            <button class="btn-sm" onclick="nextPrompt()">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUOTE -->
+    <div class="encourage-card">
+      <div class="encourage-text" id="encourage-text">—</div>
+      <div class="encourage-attr">— your coach</div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps-widget">
+      <div class="steps-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 4a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/><path d="m7 21 3-6 2 2 3-8"/><path d="M17 21h-5"/></svg>
+      </div>
+      <div class="steps-info">
+        <div class="steps-label">Daily Steps · Goal 10,000</div>
+        <div class="steps-bar-wrap"><div class="steps-bar-fill" id="steps-fill" style="width:0%"></div></div>
+        <div class="steps-count" id="steps-count">0 <em>/ 10,000</em></div>
+      </div>
+      <button class="update-btn" onclick="openModal('steps')">Update</button>
+    </div>
+
+    <!-- WEIGHT -->
+    <div class="weight-widget">
+      <div class="weight-top">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a8d8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+          <circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/><path d="M7 3.338A9.954 9.954 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/>
+        </svg>
+        <div class="weight-info">
+          <div class="weight-label">Weight Tracking</div>
+          <div class="weight-current" id="w-current">—<span>lbs</span></div>
+          <div class="weight-delta" id="w-delta" style="color:var(--muted)">No entries yet</div>
+        </div>
+        <button class="update-btn" onclick="openModal('weight')">Log</button>
+      </div>
+      <div class="weight-graph">
+        <div class="graph-label">30-Day Trend</div>
+        <div class="graph-wrap">
+          <canvas id="weight-canvas" style="display:none"></canvas>
+          <div class="graph-empty" id="graph-empty">Log your first weight to start tracking</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STREAKS -->
     <div class="streak-bar">
       <div class="streak-item">
         <div class="streak-num" id="s-streak">0</div>
-        <div class="streak-label">Streak</div>
+        <div class="streak-label">Day Streak</div>
       </div>
       <div class="streak-div"></div>
       <div class="streak-item">
@@ -576,702 +411,546 @@ body::before {
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="steps-widget">
-      <div class="steps-icon">👟</div>
-      <div class="steps-info">
-        <div class="steps-label">Daily Steps · Goal: 10,000</div>
-        <div class="steps-bar-wrap">
-          <div class="steps-bar-fill" id="steps-fill" style="width:0%"></div>
-        </div>
-        <div class="steps-count" id="steps-count">0 <em>/ 10,000 steps</em></div>
-      </div>
-      <div class="steps-actions">
-        <button class="steps-btn" onclick="openStepModal()">Update</button>
+    <!-- PER-CATEGORY STREAKS -->
+    <div class="cat-streaks" id="cat-streaks"></div>
+
+    <div class="toddler-badge" id="toddler-badge" style="margin-top:4px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>
+      <div>
+        <p>Toddler Day Mode</p>
+        <small>Prompts adapted · be present</small>
       </div>
     </div>
 
-    <!-- Notif Banner -->
-    <div class="notif-banner" id="notif-banner" onclick="enableNotifications()">
-      <div class="notif-icon">🔔</div>
-      <div class="notif-text">
-        <strong>Enable smart prompts</strong>
-        <small>Tap · mirrors to Apple Watch automatically</small>
-      </div>
-    </div>
-
-    <!-- Prompt -->
-    <div class="prompt-wrap">
-      <div class="prompt-card">
-        <div class="prompt-stripe" id="p-stripe"></div>
-        <div class="prompt-body">
-          <div class="prompt-meta">
-            <div class="prompt-cat" id="p-cat">—</div>
-            <div class="prompt-dur" id="p-dur">—</div>
-          </div>
-          <div class="prompt-text" id="p-text">Loading your first prompt...</div>
-          <div class="prompt-sub" id="p-sub"></div>
-          <div class="prompt-btns">
-            <button class="btn-done" id="btn-done" onclick="markDone()">Done ✓</button>
-            <button class="btn-sm" onclick="skipPrompt()">Skip</button>
-            <button class="btn-sm" onclick="nextPrompt()">Next →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dots" id="dots"></div>
-
-    <!-- Encouragement -->
-    <div class="encourage-card">
-      <div class="encourage-text" id="encourage-text">Loading...</div>
-      <div class="encourage-attr">— your coach</div>
-    </div>
-
-    <!-- Habits -->
-    <div class="section-label" style="margin-top:4px">Today's Habits</div>
-    <div class="habit-grid" id="habit-grid"></div>
-
+    <div style="height:8px"></div>
   </div>
 
-  <!-- ══ LOG VIEW ══ -->
+  <!-- LOG VIEW -->
   <div class="view" id="view-history">
-    <div class="header" style="margin-bottom:16px">
-      <div class="logo">Log</div>
-    </div>
+    <div class="header" style="margin-bottom:16px"><div class="logo">Log</div></div>
     <div class="section-label">Completed Today</div>
     <div class="history-list" id="history-list">
       <div style="color:var(--muted);font-style:italic;font-size:0.85rem;padding:20px 0 0 20px">Nothing yet. Go get one.</div>
     </div>
   </div>
 
-  <!-- ══ SETTINGS VIEW ══ -->
+  <!-- SETTINGS VIEW -->
   <div class="view" id="view-settings">
-    <div class="header" style="margin-bottom:16px">
-      <div class="logo">Settings</div>
-    </div>
-
+    <div class="header" style="margin-bottom:16px"><div class="logo">Settings</div></div>
     <div class="settings-block">
-      <div class="settings-title">Active Hours</div>
-      <div class="setting-row">
-        <div><div class="setting-name">Window</div><div class="setting-sub">Prompts fire between these hours</div></div>
-        <div class="setting-val">8am – 9pm</div>
-      </div>
-      <div class="setting-row">
-        <div><div class="setting-name">Meds Alert</div><div class="setting-sub">Fixed daily — 9:30am</div></div>
-        <div class="setting-val">9:30 AM</div>
-      </div>
+      <div class="settings-title">Schedule</div>
+      <div class="setting-row"><div><div class="setting-name">Active Window</div><div class="setting-sub">All prompts fire within this range</div></div><div class="setting-val">8am–9pm</div></div>
+      <div class="setting-row"><div><div class="setting-name">Meds Alert</div><div class="setting-sub">Fixed daily</div></div><div class="setting-val">9:30 AM</div></div>
+      <div class="setting-row"><div><div class="setting-name">Weigh-in Prompt</div><div class="setting-sub">Morning reminder</div></div><div class="setting-val">8:00 AM</div></div>
+      <div class="setting-row"><div><div class="setting-name">Weekly Summary</div><div class="setting-sub">Sunday evening recap</div></div><div class="setting-val">Sun 7pm</div></div>
     </div>
-
     <div class="settings-block">
       <div class="settings-title">Toddler Day Mode</div>
       <div class="setting-row">
-        <div><div class="setting-name">Auto-detect Tue & Thu</div><div class="setting-sub">Adapts prompts for days home with your 4yr old</div></div>
-        <button class="toggle on" id="toddler-toggle" onclick="this.classList.toggle('on'); saveState()"></button>
+        <div><div class="setting-name">Auto Tue & Thu</div><div class="setting-sub">Adapts prompts when home with your 4yr old</div></div>
+        <button class="toggle on" id="toddler-toggle" onclick="this.classList.toggle('on'); S.toddlerModeEnabled=this.classList.contains('on'); save(); updateToddlerBadge()"></button>
       </div>
     </div>
-
+    <div class="settings-block">
+      <div class="settings-title">Bike Mode</div>
+      <div class="setting-row">
+        <div><div class="setting-name">Bikes Serviced</div><div class="setting-sub">Enable ride prompts</div></div>
+        <button class="toggle" id="bike-toggle" onclick="this.classList.toggle('on'); S.bikesReady=this.classList.contains('on'); save(); buildQueue()"></button>
+      </div>
+    </div>
     <div class="settings-block">
       <div class="settings-title">Prompt Categories</div>
       <div id="toggle-list"></div>
     </div>
-
-    <div class="settings-block">
-      <div class="settings-title">Notifications</div>
-      <div class="setting-row">
-        <div><div class="setting-name">Smart Prompts</div><div class="setting-sub">Mirrors to Apple Watch automatically</div></div>
-        <button class="toggle on" id="notif-toggle"></button>
-      </div>
-      <div class="setting-row">
-        <div><div class="setting-name">Exercise Snacks</div><div class="setting-sub">3–5 per day, 8:30am–3pm</div></div>
-        <div class="setting-val">Smart</div>
-      </div>
-      <div class="setting-row">
-        <div><div class="setting-name">Encouragement</div><div class="setting-sub">2–3 daily, unpredictable timing</div></div>
-        <div class="setting-val">2–3 / day</div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- NAV -->
   <nav class="nav">
-    <div class="nav-item active" onclick="switchView('home',this)">
-      <div class="nav-icon">⚡</div>
-      <div class="nav-label">Today</div>
-    </div>
-    <div class="nav-item" onclick="switchView('history',this)">
-      <div class="nav-icon">📋</div>
-      <div class="nav-label">Log</div>
-    </div>
-    <div class="nav-item" onclick="switchView('settings',this)">
-      <div class="nav-icon">⚙️</div>
-      <div class="nav-label">Settings</div>
-    </div>
+    <div class="nav-item active" onclick="switchView('home',this)"><div class="nav-icon">⚡</div><div class="nav-label">Today</div></div>
+    <div class="nav-item" onclick="switchView('history',this)"><div class="nav-icon">📋</div><div class="nav-label">Log</div></div>
+    <div class="nav-item" onclick="switchView('settings',this)"><div class="nav-icon">⚙️</div><div class="nav-label">Settings</div></div>
   </nav>
-
 </div>
 
-<!-- Step Modal -->
-<div class="modal-bg" id="step-modal">
+<!-- Steps Modal -->
+<div class="modal-bg" id="modal-steps" onclick="if(event.target===this)closeModal('steps')">
   <div class="modal">
     <h3>Update Steps</h3>
-    <input type="number" id="step-input" placeholder="e.g. 4500" inputmode="numeric">
+    <p>Enter your current step count</p>
+    <input type="number" id="step-input" placeholder="e.g. 6500" inputmode="numeric">
     <div class="modal-btns">
-      <button class="modal-cancel" onclick="closeStepModal()">Cancel</button>
+      <button class="modal-cancel" onclick="closeModal('steps')">Cancel</button>
       <button class="modal-confirm" onclick="saveSteps()">Save</button>
     </div>
   </div>
 </div>
 
+<!-- Weight Modal -->
+<div class="modal-bg" id="modal-weight" onclick="if(event.target===this)closeModal('weight')">
+  <div class="modal">
+    <h3>Log Weight</h3>
+    <p>Best logged first thing in the morning</p>
+    <input type="number" id="weight-input" placeholder="e.g. 222.5" inputmode="decimal" step="0.1">
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal('weight')">Cancel</button>
+      <button class="modal-confirm" onclick="saveWeight()">Save</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ══════════════════════════════════════════════════
-// DATA
-// ══════════════════════════════════════════════════
+// ── ICONS (monochrome SVG strings, keyed by category) ──
+const ICONS = {
+  move: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.5"/><path d="m9 19 3-7 3 7"/><path d="m6 10 3-2 3 2 3-2"/></svg>`,
+  run:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="1.5"/><path d="m7 22 3-7"/><path d="m17 22-2.5-6L12 18l-2-4"/><path d="m6 12 4-2 2 3 3-1 2-3"/></svg>`,
+  bike: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M6 16 9 7h5l2 4"/><path d="m15 7 2 4H9"/><circle cx="15" cy="5" r="1"/></svg>`,
+  reflect: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 1 8 8c0 3-1.5 5.5-4 7v2H8v-2c-2.5-1.5-4-4-4-7a8 8 0 0 1 8-8z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>`,
+  connect: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  hydrate: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+  house: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  meds: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/></svg>`,
+  toddler: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/><path d="M9 14s1 1 3 1 3-1 3-1"/></svg>`,
+};
 
 const CATS = {
-  move: { label: '🏃 Move', color: '#c8ff47', short: 'Move' },
-  run:  { label: '🏃‍♂️ Run', color: '#ff6b47', short: 'Run' },
-  reflect: { label: '🧠 Reflect', color: '#47c8ff', short: 'Reflect' },
-  connect: { label: '❤️ Connect', color: '#ff47c8', short: 'Connect' },
-  hydrate: { label: '💧 Hydrate', color: '#47ffb8', short: 'Hydrate' },
-  house: { label: '🏠 Environment', color: '#ffb347', short: 'House' },
-  meds: { label: '💊 Meds', color: '#ff4747', short: 'Meds' },
-  encourage: { label: '🔥 Coach', color: '#c8a8ff', short: 'Coach' },
-  toddler: { label: '👦 Toddler', color: '#ff9f47', short: 'Toddler' },
+  move:    { label:'Move',    color:'#c8ff47', short:'Move' },
+  run:     { label:'Run',     color:'#ff6b47', short:'Run' },
+  bike:    { label:'Ride',    color:'#7fff47', short:'Ride' },
+  reflect: { label:'Reflect', color:'#47c8ff', short:'Mind' },
+  connect: { label:'Connect', color:'#ff47c8', short:'Connect' },
+  hydrate: { label:'Hydrate', color:'#47ffb8', short:'Water' },
+  house:   { label:'House',   color:'#ffb347', short:'House' },
+  meds:    { label:'Meds',    color:'#ff4747', short:'Meds' },
+  toddler: { label:'Toddler', color:'#ff9f47', short:'Dad' },
 };
 
 const PROMPTS = {
   move: [
-    { text: "Tibialis Raise", sub: "Feet flat, heels on ground, raise your toes up and down 20x. Fixes shin splints, builds ankle strength. Go.", dur: "90 sec" },
-    { text: "Knees Over Toes", sub: "Slow controlled step forward, drive knee past toes, reverse. 10 each leg. Your knees will thank you for years.", dur: "2 min" },
-    { text: "Thread the Needle", sub: "On all fours. Thread one arm under your body, rotate through your thoracic spine. 8 each side. Pure gold for your back.", dur: "90 sec" },
-    { text: "Mountain Climbers", sub: "30 seconds, controlled pace. Drive knees to chest alternating. Heart rate up, core lit. Go.", dur: "60 sec" },
-    { text: "Deep Squat Hold + Arms Overhead", sub: "Squat as deep as you can, arms straight overhead, hold 30–45 seconds. Everything opens up. Breathe.", dur: "60 sec" },
-    { text: "Push Ups", sub: "15 reps. Full range. Chest to floor. If easy, slow it down — 3 seconds down, explode up.", dur: "90 sec" },
-    { text: "Single Leg Lunge + Rear Lift", sub: "Lunge forward, drive back leg up behind you on the return. 10 each side. Balance, glutes, everything.", dur: "2 min" },
-    { text: "Hip Flexor Stretch", sub: "Kneel on one knee, push hips forward, hold 30 seconds each side. Your desk chair is your enemy.", dur: "90 sec" },
-    { text: "Thoracic Rotation", sub: "Sit or stand, arms crossed. Rotate your upper back left and right 10x each. Undoes hours of hunching.", dur: "90 sec" },
-    { text: "Farmer Carry March + Shrug", sub: "Dumbbells at sides. High knees, shrug at the top. 30 seconds. Traps, core, lungs.", dur: "60 sec" },
-    { text: "Wall Sit", sub: "Back flat, thighs parallel. Hold as long as you can. Time yourself. Beat it next round.", dur: "60 sec" },
-    { text: "Shoulder Circles + Neck Rolls", sub: "Roll shoulders back 10x, then slow neck circles. You're carrying tension you don't even feel. Release it.", dur: "90 sec" },
-    { text: "Calf Raises", sub: "Edge of a step if possible. 15 slow raises. Ankles, calves, blood flow. Simple wins.", dur: "60 sec" },
+    { text:"Tibialis Raise", sub:"Heels grounded, raise toes up and down 20x. Builds ankle strength, prevents shin splints.", dur:"90 sec" },
+    { text:"Knees Over Toes", sub:"Step forward slowly, drive knee past toes, return. 10 each leg. Knee longevity starts here.", dur:"2 min" },
+    { text:"Thread the Needle", sub:"All fours. Thread one arm under, rotate through thoracic spine. 8 each side. Pure gold for your back.", dur:"90 sec" },
+    { text:"Mountain Climbers", sub:"30 seconds controlled. Drive knees to chest alternating. Heart rate up, core working. Go.", dur:"60 sec" },
+    { text:"Deep Squat Hold + Arms Overhead", sub:"Drop deep, arms straight up. Hold 30–45 seconds. Everything opens. Breathe into it.", dur:"60 sec" },
+    { text:"Push Ups", sub:"15 reps. Full range, chest to floor. If easy — slow down. 3 seconds down, explode up.", dur:"90 sec" },
+    { text:"Single Leg Lunge + Rear Lift", sub:"Lunge forward, drive back leg up on return. 10 each side. Balance, glutes, hip stability.", dur:"2 min" },
+    { text:"Hip Flexor Stretch", sub:"Kneel on one knee, push hips forward. 30 seconds each side. Your desk chair is destroying your hips.", dur:"90 sec" },
+    { text:"Thoracic Rotation", sub:"Arms crossed. Rotate upper back left and right 10x each. Undoes hours of hunching.", dur:"90 sec" },
+    { text:"Farmer Carry March + Shrug", sub:"Dumbbells at sides. High knees, shrug at top. 30 seconds. Grip, traps, core, lungs.", dur:"60 sec" },
+    { text:"Wall Sit", sub:"Back flat, thighs parallel. Hold as long as you can. Time it. Beat it next time.", dur:"60 sec" },
+    { text:"Towel Grip Hold", sub:"Hang a towel over a door, grip both ends, hold as long as possible. Building toward pull-ups.", dur:"60 sec" },
+    { text:"Wrist Circles + Forearm Stretch", sub:"Extend arm, pull fingers back 20 sec. Reverse. Both wrists. You type too much. This matters.", dur:"60 sec" },
+    { text:"Plate or Book Pinch", sub:"Pinch a weight plate or thick book between fingers, 30 seconds each hand. Grip and forearm strength.", dur:"60 sec" },
+    { text:"Dead Hang Attempt", sub:"Grab the bar or doorframe. Hang as long as hands allow. Every second builds grip. Pull-ups start here.", dur:"60 sec" },
+    { text:"Shoulder Circles + Neck Rolls", sub:"Roll shoulders back 10x, slow neck circles. You're carrying tension you don't even feel. Let it go.", dur:"90 sec" },
+    { text:"Calf Raises", sub:"Edge of a step if possible. 15 slow raises. Blood flow, ankle strength. Simple win.", dur:"60 sec" },
   ],
-  run: [
-    { text: "10 Minute Treadmill Run", sub: "Get on. Set a pace that feels like a 7/10 effort. 10 minutes. Done. You'll feel like a different person after.", dur: "10 min" },
+  run:[
+    { text:"10 Minute Treadmill Run", sub:"7/10 effort. 10 minutes. You'll feel like a different person after. Go.", dur:"10 min" },
   ],
-  reflect: [
-    { text: "Name one thing going right", sub: "Not big. Small ones count more. What's one thing today that didn't suck?", dur: "1 min" },
-    { text: "What are you grateful for right now?", sub: "Try to name something you haven't said before. Look closer than usual.", dur: "1 min" },
-    { text: "Check in with your body", sub: "Close your eyes. Where are you holding tension? Jaw, shoulders, chest? Breathe into it. 3 deep breaths.", dur: "90 sec" },
-    { text: "Say something kind to yourself", sub: "What would you say to a close friend carrying what you're carrying? Say that. To yourself. Right now.", dur: "1 min" },
-    { text: "Name one win from today", sub: "Doesn't have to be big. You showed up. You handled something. That counts.", dur: "1 min" },
-    { text: "What would tomorrow's you thank you for?", sub: "One small thing you can do right now that future you will appreciate.", dur: "2 min" },
-    { text: "3 deep breaths", sub: "In for 4, hold for 4, out for 6. Three times. Your nervous system will literally downshift.", dur: "60 sec" },
-    { text: "What's draining you most right now?", sub: "Just name it. You don't have to fix it. Awareness is the first move.", dur: "1 min" },
+  bike:[
+    { text:"Get Outside on the Bike", sub:"Gravel or mountain. Even 20–30 minutes. This is the training. This is the goal.", dur:"30+ min" },
+    { text:"Quick Spin — 20 Minutes", sub:"Easy effort, just move. Bike fitness comes back faster than you think. Get on it.", dur:"20 min" },
   ],
-  connect: [
-    { text: "Text someone you haven't talked to in a while", sub: "Doesn't need to be deep. 'Thinking of you' is enough. Connection is a muscle — use it or lose it.", dur: "2 min" },
-    { text: "Say something specific to your wife", sub: "Not 'how was your day.' Something you actually noticed. Something real. Watch what happens.", dur: "1 min" },
-    { text: "Phone down, be near your kid", sub: "Screen away. Just be physically present for 5 minutes. He'll remember this more than you know.", dur: "5 min" },
-    { text: "Check in on a friend", sub: "Who haven't you heard from in too long? Voice note, text, anything. One minute of effort means a lot.", dur: "2 min" },
-    { text: "Tell someone they did something well", sub: "Your kid, your wife, a colleague. Say it out loud or send it. Mean it.", dur: "1 min" },
-    { text: "Put your phone in another room for 15 min", sub: "Just exist. The world will not end. You might actually breathe for the first time all day.", dur: "15 min" },
+  reflect:[
+    { text:"Name one thing going right", sub:"Not big. Small ones count more. What's one thing today that didn't suck?", dur:"1 min" },
+    { text:"What are you grateful for right now?", sub:"Name something you haven't named before. Look closer.", dur:"1 min" },
+    { text:"Check in with your body", sub:"Where are you holding tension? Jaw, shoulders, chest? Breathe into it. 3 slow breaths.", dur:"90 sec" },
+    { text:"Say something kind to yourself", sub:"What would you tell a friend carrying what you're carrying? Say that. To yourself.", dur:"1 min" },
+    { text:"Name one win from today", sub:"Doesn't have to be big. You showed up. You handled something. Name it.", dur:"1 min" },
+    { text:"3 deep breaths", sub:"In for 4, hold for 4, out for 6. Three times. Your nervous system will downshift.", dur:"60 sec" },
+    { text:"Where is your attention right now?", sub:"Where attention goes, energy flows. Are you putting yours where it matters?", dur:"1 min" },
+    { text:"What can you let go of today?", sub:"Not fix. Not solve. Just release. What's eating energy it doesn't deserve?", dur:"1 min" },
   ],
-  hydrate: [
-    { text: "Drink a full glass of water", sub: "Your muscles are 75% water. When you're dehydrated, testosterone drops, energy crashes, and focus tanks. Glass. Now.", dur: "1 min" },
-    { text: "Water + protein check", sub: "Have you hit 100g+ of protein today? Protein preserves muscle, keeps you full, stabilizes energy. Chase it with water.", dur: "1 min" },
-    { text: "Glass of water before you sit back down", sub: "Attach it to the movement. Stand up → water → sit. Build the chain.", dur: "1 min" },
-    { text: "Hydration + creatine reminder", sub: "Creatine is one of the most studied, proven supplements on earth for strength and brain function. 5g daily. With water.", dur: "1 min" },
-    { text: "Water check", sub: "Dehydration mimics hunger, tanks focus, and makes you irritable. You don't need coffee — you need water. Get it.", dur: "1 min" },
-    { text: "Fish oil check", sub: "Omega-3s reduce inflammation, support brain health, and help with mood. Taken yours today? Chase it with water.", dur: "1 min" },
-    { text: "Afternoon hydration push", sub: "Most people are significantly dehydrated by 3pm. It's why the afternoon slump hits. Water now, not coffee.", dur: "1 min" },
+  connect:[
+    { text:"Text someone you haven't talked to", sub:"Doesn't need to be deep. 'Thinking of you' is enough. Connection is a muscle — use it.", dur:"2 min" },
+    { text:"Say something real to your wife", sub:"Not 'how was your day.' Something specific. Something noticed. Watch what happens.", dur:"1 min" },
+    { text:"Phone down, be near your kid", sub:"Screen away. Physically present. 5 minutes. He'll remember this.", dur:"5 min" },
+    { text:"Check in on a friend", sub:"Who haven't you heard from too long? One text. One voice note. Go.", dur:"2 min" },
+    { text:"Tell someone they did something well", sub:"Your kid, your wife, a colleague. Say it. Mean it.", dur:"1 min" },
+    { text:"Phone in another room for 15 min", sub:"Just exist. The world will not end. You might actually breathe.", dur:"15 min" },
   ],
-  house: [
-    { text: "Look around and pick one thing", sub: "One dish, one piece of clutter, one surface. Ownership not obligation. Just one thing.", dur: "5 min" },
-    { text: "Trash sweep", sub: "Walk through, grab any trash you see. Two minutes. The place feels better immediately.", dur: "2 min" },
-    { text: "Clear one surface", sub: "Counter, table, desk. Clear it completely. Visual calm creates mental calm. Pick one.", dur: "3 min" },
-    { text: "Start a load of laundry", sub: "Throw it in. It runs itself. You just have to start it. Go.", dur: "2 min" },
-    { text: "Quick kitchen reset", sub: "Dishes in sink, counter wiped, done. Not perfect. Just reset.", dur: "5 min" },
-    { text: "Put 10 things away", sub: "Count to 10. One item at a time. Go right now.", dur: "3 min" },
+  hydrate:[
+    { text:"Drink a full glass of water", sub:"Muscles are 75% water. Dehydration drops testosterone, tanks focus, causes fatigue. Glass. Now.", dur:"1 min" },
+    { text:"Water + protein check", sub:"Have you hit 100g+ of protein today? Preserves muscle, stabilizes energy. Chase it with water.", dur:"1 min" },
+    { text:"Water before you sit back down", sub:"Stand up → water → sit. Build the chain. Make it automatic.", dur:"1 min" },
+    { text:"Creatine reminder", sub:"5g daily. Proven for strength, brain function, recovery. With water.", dur:"1 min" },
+    { text:"Afternoon hydration push", sub:"Most people are dehydrated by 3pm. That's why the slump hits. Water now.", dur:"1 min" },
+    { text:"Fish oil check", sub:"Omega-3s reduce inflammation, support brain health and mood. Taken yours? With water.", dur:"1 min" },
+    { text:"Hydration = testosterone", sub:"Low hydration suppresses hormone production. You're working on T levels — water is part of that.", dur:"1 min" },
   ],
-  meds: [
-    { text: "Take your medication", sub: "Non-negotiable. Every day, same time. This is part of the work.", dur: "1 min" },
+  house:[
+    { text:"Look around, pick one thing", sub:"One dish, one piece of clutter, one surface. Ownership not obligation. Just one.", dur:"5 min" },
+    { text:"Trash sweep", sub:"Walk through, grab what you see. Two minutes. Place feels better instantly.", dur:"2 min" },
+    { text:"Clear one surface", sub:"Counter, table, desk. Clear it completely. Visual calm creates mental calm.", dur:"3 min" },
+    { text:"Start a load of laundry", sub:"Throw it in. It runs itself. You just have to start it.", dur:"2 min" },
+    { text:"Quick kitchen reset", sub:"Dishes in sink, counter wiped. Not perfect. Just reset.", dur:"5 min" },
+    { text:"Put 10 things away", sub:"Count to 10. One thing at a time. Go.", dur:"3 min" },
   ],
-  toddler: [
-    { text: "5 minutes on the floor with him", sub: "Phone away. Get down to his level. Let him lead. This is the stuff he'll carry his whole life.", dur: "5 min" },
-    { text: "Step outside together", sub: "Even just the driveway or yard. Fresh air, different environment. Resets you both.", dur: "10 min" },
-    { text: "Dance break", sub: "Put something on. Be ridiculous. He'll lose his mind. You'll feel it too.", dur: "3 min" },
-    { text: "Ask him to show you something", sub: "'What are you playing?' Then actually watch. Full attention. 3 minutes. That's it.", dur: "3 min" },
-    { text: "Snack time together", sub: "Sit with him. No phone. Just eat something and exist together.", dur: "5 min" },
-    { text: "Read one book", sub: "Let him pick. Doesn't matter what it is. The act of reading together matters more than the book.", dur: "5 min" },
+  meds:[
+    { text:"Take your medication", sub:"Every day, same time. Non-negotiable. Part of the work.", dur:"1 min" },
+  ],
+  toddler:[
+    { text:"5 minutes on the floor with him", sub:"Phone away, get to his level, let him lead. This is the stuff he'll carry his whole life.", dur:"5 min" },
+    { text:"Step outside together", sub:"Even just the driveway. Fresh air, new environment. Resets you both.", dur:"10 min" },
+    { text:"Dance break", sub:"Put something on. Be ridiculous. He'll lose his mind. So will you.", dur:"3 min" },
+    { text:"Ask him to show you something", sub:"'What are you playing?' Then actually watch. 3 minutes of real attention.", dur:"3 min" },
+    { text:"Snack together", sub:"Sit with him. No phone. Just exist together.", dur:"5 min" },
+    { text:"Read one book", sub:"Let him pick. The act matters more than the book.", dur:"5 min" },
   ],
 };
 
 const ENCOURAGEMENTS = [
-  "You're doing more than you think. The fact that you're even trying — that's not nothing. That's everything.",
-  "Two rounds still counts. Imperfect action beats perfect inaction every single time. Keep going.",
+  "Where attention goes, energy flows. Right now — what are you giving yours to?",
+  "If you slow down, you go down. Keep moving. Even slowly. Just keep moving.",
+  "Always forward. Not perfect. Not fast. Forward.",
+  "Better than yesterday. That's the only standard that matters.",
+  "You're doing more than you think. The fact that you're trying — that's everything.",
+  "Imperfect action beats perfect inaction. Every single time.",
   "You showed up today. That's the whole game. Just keep showing up.",
-  "The guilt you feel? That's love. Bad dads don't lie awake worrying about being better dads.",
-  "You're not behind. You're building. There's a real difference between those two things.",
-  "Small moves, repeated over time. That's all this is. You're doing it.",
-  "The version of you that felt alive and strong? He's still in there. He just needs some fuel. You're giving him that.",
-  "One thing at a time. You don't have to fix everything today. Just today.",
-  "Rest is not quitting. Recovery is part of the work. Don't forget that.",
-  "You're carrying a lot. More than most people know. And you're still here, still trying. That matters.",
-  "Progress isn't always visible. But the compounding is real. Trust the process.",
-  "You went from surviving to building. That shift is massive. Don't underestimate it.",
-  "The days you don't feel like it and do it anyway — those are the ones that change everything.",
-  "Your kids are watching. Not what you say — what you do. You're showing them something real.",
-  "You messaged your doctor. You worked out. You showed up for your family. That's a good day.",
-  "The race you want to run? It starts here. With this. With today.",
+  "The guilt you feel? That's love. Bad dads don't lie awake worrying about this.",
+  "You're not behind. You're building. There's a real difference.",
+  "Small moves, repeated. That's all this is. You're doing it.",
+  "The version of you that felt alive? He's still in there. You're giving him fuel right now.",
+  "One thing at a time. You don't have to fix everything today.",
+  "Recovery is training. Rest is not weakness.",
+  "You're carrying a lot. More than most. And you're still here, still going.",
+  "The days you don't feel like it and do it anyway — those are the ones that change things.",
+  "Your kids are watching what you do, not what you say. Show them something real.",
+  "The race you want to run starts here. With this. With today.",
   "Hard seasons don't last. But what you build in them does.",
-  "You're not the sum of your worst days. You're the sum of your decisions. Keep making better ones.",
-  "Nobody hands you the life you want. You build it, one boring day at a time. You're building.",
-  "Give yourself credit. Seriously. When did you last actually do that?",
+  "Always forward. Every rep, every step, every glass of water.",
+  "Better than yesterday. Not perfect. Just better.",
 ];
 
-// ══════════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════════
-
-const DEFAULT_STATE = {
-  dayStreak: 0,
-  weekCount: 0,
-  doneToday: 0,
-  lastDate: null,
-  steps: 0,
-  stepsGoalHit: false,
-  runDoneToday: false,
-  medsDoneToday: false,
-  habits: {},
-  history: [],
-  toggles: { move: true, run: true, reflect: true, connect: true, hydrate: true, house: true },
-  toddlerModeEnabled: true,
-  encourageCount: 0,
-  lastEncourageDate: null,
+// ── STATE ──
+const DEF = {
+  dayStreak:0, weekCount:0, doneToday:0, lastDate:null,
+  steps:0, stepsGoalHit:false, runDoneToday:false, medsDoneToday:false,
+  habits:{}, history:[],
+  toggles:{ move:true, run:true, bike:false, reflect:true, connect:true, hydrate:true, house:true },
+  toddlerModeEnabled:true, bikesReady:false, weightLog:[],
 };
+Object.keys(CATS).forEach(k => { DEF.habits[k]={streak:0,doneToday:false}; });
 
-// init habits
-Object.keys(CATS).forEach(k => {
-  DEFAULT_STATE.habits[k] = { streak: 0, doneToday: false };
-});
+let S = JSON.parse(localStorage.getItem('acv3')||'null') || JSON.parse(JSON.stringify(DEF));
+Object.keys(CATS).forEach(k => { if(!S.habits[k]) S.habits[k]={streak:0,doneToday:false}; });
+if(!S.weightLog) S.weightLog=[];
 
-let S = JSON.parse(localStorage.getItem('acv2') || 'null') || JSON.parse(JSON.stringify(DEFAULT_STATE));
+function save(){ localStorage.setItem('acv3',JSON.stringify(S)); }
 
-// ensure all habit keys exist
-Object.keys(CATS).forEach(k => {
-  if (!S.habits[k]) S.habits[k] = { streak: 0, doneToday: false };
-});
-
-function save() { localStorage.setItem('acv2', JSON.stringify(S)); }
-
-function dayRollover() {
-  const today = new Date().toDateString();
-  if (S.lastDate !== today) {
-    if (S.doneToday > 0) { S.dayStreak++; S.weekCount += S.doneToday; }
-    S.doneToday = 0;
-    S.steps = 0;
-    S.stepsGoalHit = false;
-    S.runDoneToday = false;
-    S.medsDoneToday = false;
-    S.lastDate = today;
-    S.encourageCount = 0;
-    S.history = [];
-    Object.keys(S.habits).forEach(k => {
-      if (!S.habits[k].doneToday) S.habits[k].streak = 0;
-      S.habits[k].doneToday = false;
+function dayRollover(){
+  const today=new Date().toDateString();
+  if(S.lastDate!==today){
+    if(S.doneToday>0){S.dayStreak++;S.weekCount+=S.doneToday;}
+    S.doneToday=0;S.steps=0;S.stepsGoalHit=false;
+    S.runDoneToday=false;S.medsDoneToday=false;S.lastDate=today;
+    S.history=[];
+    Object.keys(S.habits).forEach(k=>{
+      if(!S.habits[k].doneToday) S.habits[k].streak=0;
+      S.habits[k].doneToday=false;
     });
     save();
   }
 }
 
-function isToddlerDay() {
-  if (!S.toddlerModeEnabled) return false;
-  const day = new Date().getDay();
-  return day === 2 || day === 4; // Tuesday=2, Thursday=4
-}
+function isToddlerDay(){ if(!S.toddlerModeEnabled) return false; const d=new Date().getDay(); return d===2||d===4; }
 
-// ══════════════════════════════════════════════════
-// PROMPT QUEUE
-// ══════════════════════════════════════════════════
+// ── QUEUE ──
+let queue=[], current=null;
 
-let queue = [];
-let current = null;
-
-function buildQueue() {
-  queue = [];
-  const keys = Object.keys(PROMPTS).filter(k => {
-    if (k === 'meds' || k === 'run' || k === 'encourage') return false;
-    if (k === 'toddler') return isToddlerDay();
-    return S.toggles[k] !== false;
+function buildQueue(){
+  queue=[];
+  const keys=Object.keys(PROMPTS).filter(k=>{
+    if(['meds','run'].includes(k)) return false;
+    if(k==='toddler') return isToddlerDay();
+    if(k==='bike') return S.bikesReady && S.toggles.bike!==false;
+    return S.toggles[k]!==false;
   });
-  keys.forEach(cat => {
-    PROMPTS[cat].forEach((item, i) => queue.push({ cat, item, i }));
-  });
-  shuffle(queue);
+  keys.forEach(cat=>PROMPTS[cat].forEach((item,i)=>queue.push({cat,item,i})));
+  for(let i=queue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[queue[i],queue[j]]=[queue[j],queue[i]];}
 }
 
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
+function getP(){ if(!queue.length) buildQueue(); return queue.shift(); }
+
+function showPrompt(p){
+  current=p;
+  const cat=CATS[p.cat];
+  document.getElementById('p-stripe').style.background=cat.color;
+  document.getElementById('p-cat').textContent=cat.label.toUpperCase();
+  document.getElementById('p-cat').style.color=cat.color;
+  document.getElementById('p-dur').textContent=p.item.dur||'—';
+  document.getElementById('p-text').textContent=p.item.text;
+  document.getElementById('p-sub').textContent=p.item.sub;
+  document.getElementById('btn-done').style.background=cat.color;
+  renderCatJumps();
 }
 
-function getPrompt() {
-  if (!queue.length) buildQueue();
-  return queue.shift();
-}
-
-function showPrompt(p) {
-  current = p;
-  const cat = CATS[p.cat];
-  document.getElementById('p-stripe').style.background = cat.color;
-  document.getElementById('p-cat').textContent = cat.label;
-  document.getElementById('p-cat').style.color = cat.color;
-  document.getElementById('p-dur').textContent = p.item.dur || '—';
-  document.getElementById('p-text').textContent = p.item.text;
-  document.getElementById('p-sub').textContent = p.item.sub;
-  document.getElementById('btn-done').style.background = cat.color;
-  updateDots();
-}
-
-function nextPrompt() { showPrompt(getPrompt()); }
-function skipPrompt() { if (current) queue.push(current); nextPrompt(); }
-
-function markDone() {
-  if (!current) return;
-  const cat = current.cat;
-  S.doneToday++;
-  S.habits[cat].doneToday = true;
-  S.habits[cat].streak++;
-  if (cat === 'run') S.runDoneToday = true;
-  if (cat === 'meds') S.medsDoneToday = true;
-  S.history.unshift({
-    text: current.item.text,
-    cat: CATS[cat].label,
-    color: CATS[cat].color,
-    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-  });
-  save();
-  flash('DONE! 💪');
-  updateAll();
-  nextPrompt();
-  rotateEncourage();
-}
-
-// ══════════════════════════════════════════════════
-// ENCOURAGEMENT
-// ══════════════════════════════════════════════════
-
-let encourageIdx = Math.floor(Math.random() * ENCOURAGEMENTS.length);
-
-function rotateEncourage() {
-  encourageIdx = (encourageIdx + 1) % ENCOURAGEMENTS.length;
-  document.getElementById('encourage-text').textContent = ENCOURAGEMENTS[encourageIdx];
-}
-
-// ══════════════════════════════════════════════════
-// STEPS
-// ══════════════════════════════════════════════════
-
-function openStepModal() {
-  document.getElementById('step-input').value = S.steps || '';
-  document.getElementById('step-modal').classList.add('open');
-  setTimeout(() => document.getElementById('step-input').focus(), 100);
-}
-
-function closeStepModal() {
-  document.getElementById('step-modal').classList.remove('open');
-}
-
-function saveSteps() {
-  const val = parseInt(document.getElementById('step-input').value) || 0;
-  S.steps = Math.min(val, 99999);
-  if (S.steps >= 10000 && !S.stepsGoalHit) {
-    S.stepsGoalHit = true;
-    S.doneToday++;
-    flash('10K STEPS! 🔥');
-  }
-  save();
-  updateSteps();
-  closeStepModal();
-}
-
-function updateSteps() {
-  const pct = Math.min((S.steps / 10000) * 100, 100);
-  document.getElementById('steps-fill').style.width = pct + '%';
-  document.getElementById('steps-fill').style.background = S.stepsGoalHit ? '#47ffb8' : '#c8ff47';
-  document.getElementById('steps-count').innerHTML =
-    `${S.steps.toLocaleString()} <em>/ 10,000 steps${S.stepsGoalHit ? ' ✓' : ''}</em>`;
-}
-
-// ══════════════════════════════════════════════════
-// RENDER
-// ══════════════════════════════════════════════════
-
-function updateStats() {
-  document.getElementById('s-streak').textContent = S.dayStreak;
-  document.getElementById('s-done').textContent = S.doneToday;
-  document.getElementById('s-week').textContent = S.weekCount + S.doneToday;
-}
-
-function updateDots() {
-  const cats = Object.keys(CATS).filter(k => !['run','meds','encourage','toddler'].includes(k) && S.toggles[k] !== false);
-  document.getElementById('dots').innerHTML = cats.map(cat =>
-    `<div class="dot ${S.habits[cat].doneToday ? 'done' : (current && current.cat === cat ? 'active' : '')}"></div>`
-  ).join('');
-}
-
-function renderHabits() {
-  const show = ['move','run','reflect','connect','hydrate','house'];
-  if (isToddlerDay()) show.push('toddler');
-  document.getElementById('habit-grid').innerHTML = show.map(cat => {
-    const cfg = CATS[cat];
-    const h = S.habits[cat];
-    return `<div class="habit-card ${h.doneToday ? 'done' : ''}" 
-      style="color:${cfg.color}" onclick="jumpTo('${cat}')">
-      <div class="habit-icon">${cfg.label.split(' ')[0]}</div>
-      <div class="habit-name">${cfg.short}</div>
-      <div class="habit-streak">🔥 ${h.streak} day streak</div>
-    </div>`;
+function renderCatJumps(){
+  const show=['move','run','reflect','connect','hydrate','house'];
+  if(isToddlerDay()) show.push('toddler');
+  if(S.bikesReady) show.push('bike');
+  document.getElementById('cat-jumps').innerHTML=show.map(cat=>{
+    const cfg=CATS[cat];
+    const done=S.habits[cat].doneToday;
+    const active=current&&current.cat===cat;
+    return `<button class="cat-btn ${active?'active':''} ${done?'done-cat':''}"
+      style="color:${active?cfg.color:done?cfg.color+'99':'var(--muted)'};${active?`border-color:${cfg.color};background:var(--surface)`:''};"
+      onclick="jumpTo('${cat}')">
+      ${ICONS[cat]||''}
+      <span>${cfg.short}</span>
+    </button>`;
   }).join('');
 }
 
-function jumpTo(cat) {
-  const idx = queue.findIndex(p => p.cat === cat);
+function nextPrompt(){ showPrompt(getP()); }
+function skipPrompt(){ if(current) queue.push(current); nextPrompt(); }
+
+function markDone(){
+  if(!current) return;
+  const cat=current.cat;
+  S.doneToday++;S.habits[cat].doneToday=true;S.habits[cat].streak++;
+  if(cat==='run') S.runDoneToday=true;
+  if(cat==='meds') S.medsDoneToday=true;
+  S.history.unshift({text:current.item.text,cat:CATS[cat].label,color:CATS[cat].color,time:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
+  save(); flash('DONE! 💪'); updateAll(); nextPrompt(); rotateEncourage();
+}
+
+function jumpTo(cat){
+  const idx=queue.findIndex(p=>p.cat===cat);
   let p;
-  if (idx > -1) { p = queue.splice(idx, 1)[0]; }
-  else {
-    const items = PROMPTS[cat];
-    if (!items) return;
-    p = { cat, item: items[Math.floor(Math.random() * items.length)] };
-  }
+  if(idx>-1){p=queue.splice(idx,1)[0];}
+  else{const items=PROMPTS[cat];if(!items)return;p={cat,item:items[Math.floor(Math.random()*items.length)]};}
   showPrompt(p);
-  switchView('home', document.querySelector('.nav-item'));
 }
 
-function renderHistory() {
-  const list = document.getElementById('history-list');
-  if (!S.history.length) {
-    list.innerHTML = '<div style="color:var(--muted);font-style:italic;font-size:0.85rem;padding:20px 0 0 20px">Nothing yet. Go get one.</div>';
-    return;
+// ── ENCOURAGEMENT ──
+let eIdx=Math.floor(Math.random()*ENCOURAGEMENTS.length);
+function rotateEncourage(){ eIdx=(eIdx+1)%ENCOURAGEMENTS.length; document.getElementById('encourage-text').textContent=ENCOURAGEMENTS[eIdx]; }
+
+// ── STEPS ──
+function openModal(type){
+  if(type==='steps'){
+    document.getElementById('step-input').value=S.steps||'';
+    document.getElementById('modal-steps').classList.add('open');
+    setTimeout(()=>document.getElementById('step-input').focus(),100);
+  } else {
+    const last=S.weightLog.length?S.weightLog[S.weightLog.length-1].val:'';
+    document.getElementById('weight-input').value=last||'';
+    document.getElementById('modal-weight').classList.add('open');
+    setTimeout(()=>document.getElementById('weight-input').focus(),100);
   }
-  list.innerHTML = S.history.map(h => `
-    <div class="history-item">
-      <div>
-        <div class="history-name">${h.text}</div>
-        <div class="history-time">${h.time}</div>
-      </div>
-      <div class="history-tag" style="color:${h.color}">${h.cat.split(' ')[0]}</div>
-    </div>`).join('');
+}
+function closeModal(type){ document.getElementById('modal-'+type).classList.remove('open'); }
+
+function saveSteps(){
+  const val=parseInt(document.getElementById('step-input').value)||0;
+  S.steps=Math.min(val,99999);
+  if(S.steps>=10000&&!S.stepsGoalHit){S.stepsGoalHit=true;S.doneToday++;flash('10K! 🔥');}
+  save();updateSteps();closeModal('steps');
 }
 
-function renderToggles() {
-  const cats = ['move','run','reflect','connect','hydrate','house'];
-  document.getElementById('toggle-list').innerHTML = cats.map(cat => `
+function updateSteps(){
+  const pct=Math.min((S.steps/10000)*100,100);
+  document.getElementById('steps-fill').style.width=pct+'%';
+  document.getElementById('steps-fill').style.background=S.stepsGoalHit?'#47ffb8':'#c8ff47';
+  document.getElementById('steps-count').innerHTML=`${S.steps.toLocaleString()} <em>/ 10,000${S.stepsGoalHit?' ✓':''}</em>`;
+}
+
+// ── WEIGHT ──
+function saveWeight(){
+  const val=parseFloat(document.getElementById('weight-input').value);
+  if(isNaN(val)||val<50||val>500) return;
+  const today=new Date().toDateString();
+  const ex=S.weightLog.findIndex(e=>e.date===today);
+  if(ex>-1) S.weightLog[ex].val=val;
+  else S.weightLog.push({date:today,val});
+  if(S.weightLog.length>90) S.weightLog=S.weightLog.slice(-90);
+  save();updateWeight();closeModal('weight');flash('LOGGED ⚖️');
+}
+
+function updateWeight(){
+  const log=S.weightLog;
+  const empty=document.getElementById('graph-empty');
+  const canvas=document.getElementById('weight-canvas');
+  if(!log.length){
+    document.getElementById('w-current').innerHTML='—<span>lbs</span>';
+    document.getElementById('w-delta').style.color='var(--muted)';
+    document.getElementById('w-delta').textContent='No entries yet';
+    empty.style.display='block';canvas.style.display='none';return;
+  }
+  empty.style.display='none';canvas.style.display='block';
+  const latest=log[log.length-1].val;
+  document.getElementById('w-current').innerHTML=`${latest.toFixed(1)}<span>lbs</span>`;
+  if(log.length>=2){
+    const diff=(latest-log[0].val).toFixed(1);
+    const isDown=diff<0;
+    document.getElementById('w-delta').style.color=isDown?'#47ffb8':diff>0?'#ff6b47':'var(--muted)';
+    document.getElementById('w-delta').textContent=`${isDown?'':'+'}${diff} lbs since first log`;
+  } else {
+    document.getElementById('w-delta').textContent='First entry — keep logging';
+    document.getElementById('w-delta').style.color='var(--muted)';
+  }
+  drawGraph(log);
+}
+
+function drawGraph(log){
+  const canvas=document.getElementById('weight-canvas');
+  const dpr=window.devicePixelRatio||1;
+  const rect=canvas.parentElement.getBoundingClientRect();
+  canvas.width=rect.width*dpr;canvas.height=56*dpr;
+  canvas.style.width=rect.width+'px';canvas.style.height='56px';
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  const W=rect.width,H=56;
+  const vals=log.map(e=>e.val);
+  const min=Math.min(...vals)-2,max=Math.max(...vals)+2,range=max-min||1,pad=4;
+  const pts=vals.map((v,i)=>({x:pad+(i/Math.max(vals.length-1,1))*(W-pad*2),y:H-pad-((v-min)/range)*(H-pad*2)}));
+  const grad=ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'rgba(168,216,255,0.25)');grad.addColorStop(1,'rgba(168,216,255,0)');
+  ctx.beginPath();ctx.moveTo(pts[0].x,H);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x,H);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+  ctx.beginPath();ctx.strokeStyle='#a8d8ff';ctx.lineWidth=1.5;ctx.lineJoin='round';
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));ctx.stroke();
+  const lp=pts[pts.length-1];
+  ctx.beginPath();ctx.arc(lp.x,lp.y,3,0,Math.PI*2);ctx.fillStyle='#a8d8ff';ctx.fill();
+}
+
+// ── STATS ──
+function updateStats(){
+  document.getElementById('s-streak').textContent=S.dayStreak;
+  document.getElementById('s-done').textContent=S.doneToday;
+  document.getElementById('s-week').textContent=S.weekCount+S.doneToday;
+}
+
+function updateToddlerBadge(){
+  document.getElementById('toddler-badge').classList.toggle('visible',isToddlerDay()&&S.toddlerModeEnabled);
+}
+
+function renderHistory(){
+  const list=document.getElementById('history-list');
+  if(!S.history.length){list.innerHTML='<div style="color:var(--muted);font-style:italic;font-size:0.85rem;padding:20px 0 0 20px">Nothing yet. Go get one.</div>';return;}
+  list.innerHTML=S.history.map(h=>`<div class="history-item"><div><div class="history-name">${h.text}</div><div class="history-time">${h.time}</div></div><div class="history-tag" style="color:${h.color}">${h.cat}</div></div>`).join('');
+}
+
+function renderToggles(){
+  const cats=['move','run','reflect','connect','hydrate','house'];
+  document.getElementById('toggle-list').innerHTML=cats.map(cat=>`
     <div class="setting-row">
       <div><div class="setting-name">${CATS[cat].label}</div></div>
-      <button class="toggle ${S.toggles[cat] !== false ? 'on' : ''}" 
-        onclick="toggleCat('${cat}',this)"></button>
+      <button class="toggle ${S.toggles[cat]!==false?'on':''}" onclick="toggleCat('${cat}',this)"></button>
     </div>`).join('');
+  const bt=document.getElementById('bike-toggle');
+  if(bt) bt.classList.toggle('on',!!S.bikesReady);
 }
 
-function toggleCat(cat, btn) {
-  S.toggles[cat] = S.toggles[cat] === false ? true : false;
-  btn.classList.toggle('on');
-  buildQueue();
-  save();
+function toggleCat(cat,btn){S.toggles[cat]=S.toggles[cat]===false?true:false;btn.classList.toggle('on');buildQueue();save();}
+
+
+function renderCatStreaks(){
+  const show=['move','run','reflect','connect','hydrate','house'];
+  if(isToddlerDay()) show.push('toddler');
+  if(S.bikesReady) show.push('bike');
+  document.getElementById('cat-streaks').innerHTML=show.map(cat=>{
+    const cfg=CATS[cat];
+    const h=S.habits[cat];
+    const done=h.doneToday;
+    return `<div class="cat-streak-row">
+      <span class="cat-streak-name ${done?'done':''}">${done?'✓ ':' '}${cfg.label}</span>
+      <span class="cat-streak-val ${h.streak===0?'zero':''}">🔥 ${h.streak}d</span>
+    </div>`;
+  }).join('');
 }
+function updateAll(){updateStats();updateSteps();updateWeight();renderHistory();updateToddlerBadge();renderCatJumps();renderCatStreaks();}
 
-function updateToddlerBadge() {
-  document.getElementById('toddler-badge').classList.toggle('visible', isToddlerDay() && S.toddlerModeEnabled);
-}
+// ── NOTIFICATIONS ──
+function inWindow(){const h=new Date().getHours();return h>=8&&h<21;}
 
-function updateAll() {
-  updateStats();
-  updateSteps();
-  renderHabits();
-  renderHistory();
-  updateToddlerBadge();
-}
-
-// ══════════════════════════════════════════════════
-// NOTIFICATIONS
-// ══════════════════════════════════════════════════
-
-function inWindow() {
-  const h = new Date().getHours();
-  return h >= 8 && h < 21;
-}
-
-async function enableNotifications() {
-  if (!('Notification' in window)) {
-    alert('Add this to your home screen via Safari for full notification support.');
-    return;
-  }
-  const perm = await Notification.requestPermission();
-  if (perm === 'granted') {
-    document.getElementById('notif-banner').innerHTML = `
-      <div class="notif-icon">✅</div>
-      <div class="notif-text">
-        <strong>Prompts active 8am–9pm</strong>
-        <small>Mirroring to Apple Watch automatically</small>
-      </div>`;
+async function enableNotifications(){
+  if(!('Notification' in window)){alert('Open in Safari and add to home screen for notifications.');return;}
+  const perm=await Notification.requestPermission();
+  if(perm==='granted'){
+    document.getElementById('notif-banner').innerHTML=`<div class="notif-icon">✅</div><div class="notif-text"><strong>Prompts active 8am–9pm</strong><small>Mirroring to Apple Watch</small></div>`;
     scheduleAll();
   }
 }
 
-function sendNotif(title, body, tag) {
-  if (!('Notification' in window) || Notification.permission !== 'granted') return;
-  if (!inWindow()) return;
-  new Notification(title, { body, tag: tag || 'actionable', icon: '⚡' });
+function sendNotif(title,body,tag){
+  if(!('Notification' in window)||Notification.permission!=='granted'||!inWindow()) return;
+  new Notification(title,{body,tag:tag||'ac',icon:'⚡'});
 }
 
-function scheduleAll() {
-  // Meds — 9:30am
-  scheduleDailyAt(9, 30, () => {
-    if (!S.medsDoneToday) sendNotif('💊 Action(able)', 'Take your medication. Every day, same time. Non-negotiable.', 'meds');
-  });
+function scheduleDailyAt(h,m,fn){
+  const now=new Date(),target=new Date();
+  target.setHours(h,m,0,0);
+  let delay=target-now;
+  if(delay<0) delay+=86400000;
+  setTimeout(()=>{fn();setInterval(fn,86400000);},delay);
+}
 
-  // Exercise snacks — 8:30, 9:00, 11:30, 14:00, 15:00
-  const snackTimes = [[8,30],[9,0],[11,30],[14,0],[15,0]];
-  snackTimes.forEach(([h,m]) => {
-    scheduleDailyAt(h, m, () => {
-      const items = PROMPTS.move;
-      const item = items[Math.floor(Math.random() * items.length)];
-      sendNotif(`🏃 Exercise Snack · ${item.dur}`, item.text, 'snack');
+function scheduleAll(){
+  scheduleDailyAt(8,0,()=>sendNotif('⚖️ Action(able)','Log your weight before food. Consistency builds the picture.','weigh'));
+  scheduleDailyAt(9,30,()=>{if(!S.medsDoneToday) sendNotif('💊 Action(able)','Take your medication. Every day. Non-negotiable.','meds');});
+  [[8,30],[9,0],[11,30],[14,0],[15,0]].forEach(([h,m])=>{
+    scheduleDailyAt(h,m,()=>{
+      const items=PROMPTS.move;const item=items[Math.floor(Math.random()*items.length)];
+      sendNotif(`🏃 ${item.text} · ${item.dur}`,item.sub.slice(0,80),'snack');
     });
   });
-
-  // Run — hourly 10am until done
   scheduleRunPings();
-
-  // Hydration — scattered
-  [[10,15],[12,30],[14,30],[16,0],[17,30]].forEach(([h,m]) => {
-    scheduleDailyAt(h, m, () => {
-      const item = PROMPTS.hydrate[Math.floor(Math.random() * PROMPTS.hydrate.length)];
-      sendNotif('💧 Action(able)', item.text, 'hydrate');
-    });
+  scheduleDailyAt(10,0,()=>{
+    if(!S.bikesReady) return;
+    const d=new Date().getDay();
+    if(d===3||d===6) sendNotif('🚵 Ride Day','Get outside on the bike. Even 20 minutes. This is the training.','bike');
   });
-
-  // Reflection
-  scheduleDailyAt(8, 0, () => {
-    sendNotif('🧠 Morning check-in', 'Name one thing you\'re grateful for before the day takes over.', 'reflect-am');
+  [[10,15],[12,30],[14,30],[16,0],[17,30]].forEach(([h,m])=>{
+    scheduleDailyAt(h,m,()=>{const item=PROMPTS.hydrate[Math.floor(Math.random()*PROMPTS.hydrate.length)];sendNotif('💧 Action(able)',item.text,'hydrate');});
   });
-  scheduleDailyAt(20, 30, () => {
-    sendNotif('🧠 Wind down', 'One win from today. Name it.', 'reflect-pm');
-  });
-
-  // House
-  [[13,0],[17,0]].forEach(([h,m]) => {
-    scheduleDailyAt(h, m, () => {
-      const item = PROMPTS.house[Math.floor(Math.random() * PROMPTS.house.length)];
-      sendNotif('🏠 Action(able)', item.text, 'house');
-    });
-  });
-
-  // Connect
-  [[12,0],[16,0]].forEach(([h,m]) => {
-    scheduleDailyAt(h, m, () => {
-      const item = PROMPTS.connect[Math.floor(Math.random() * PROMPTS.connect.length)];
-      sendNotif('❤️ Action(able)', item.text, 'connect');
-    });
-  });
-
-  // Encouragement — 2-3 per day, pseudo-random times
-  const encourageTimes = [[9,45],[13,15],[16,30]];
-  const selected = encourageTimes.sort(() => Math.random() - 0.5).slice(0, 2 + Math.floor(Math.random() * 2));
-  selected.forEach(([h,m]) => {
-    scheduleDailyAt(h, m, () => {
-      const msg = ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
-      sendNotif('🔥 Your Coach', msg, 'encourage');
-    });
-  });
+  scheduleDailyAt(8,5,()=>sendNotif('🧠 Morning check-in','Name one thing you\'re grateful for before the day takes over.','reflect-am'));
+  scheduleDailyAt(20,30,()=>sendNotif('🧠 Wind down','One win from today. Name it.','reflect-pm'));
+  [[13,0],[17,0]].forEach(([h,m])=>scheduleDailyAt(h,m,()=>{const i=PROMPTS.house[Math.floor(Math.random()*PROMPTS.house.length)];sendNotif('🏠 Action(able)',i.text,'house');}));
+  [[12,0],[16,0]].forEach(([h,m])=>scheduleDailyAt(h,m,()=>{const i=PROMPTS.connect[Math.floor(Math.random()*PROMPTS.connect.length)];sendNotif('❤️ Action(able)',i.text,'connect');}));
+  const times=[[9,45],[13,15],[16,30]].sort(()=>Math.random()-0.5).slice(0,2+Math.round(Math.random()));
+  times.forEach(([h,m])=>scheduleDailyAt(h,m,()=>{const msg=ENCOURAGEMENTS[Math.floor(Math.random()*ENCOURAGEMENTS.length)];sendNotif('🔥 Your Coach',msg,'encourage');}));
+  scheduleDailyAt(19,0,()=>{if(new Date().getDay()!==0)return;sendNotif('📋 Weekly Recap',`${S.doneToday} done today · ${S.dayStreak} day streak · ${S.steps.toLocaleString()} steps. Keep going.`,'weekly');});
 }
 
-function scheduleDailyAt(hour, min, fn) {
-  const now = new Date();
-  const target = new Date();
-  target.setHours(hour, min, 0, 0);
-  let delay = target - now;
-  if (delay < 0) delay += 24 * 60 * 60 * 1000;
-  setTimeout(() => {
-    fn();
-    setInterval(fn, 24 * 60 * 60 * 1000);
-  }, delay);
-}
-
-function scheduleRunPings() {
-  function checkRun() {
-    if (!S.runDoneToday && inWindow() && new Date().getHours() >= 10) {
-      sendNotif('🏃‍♂️ Run Time', '10 minutes on the treadmill. Get it done before the day takes over.', 'run');
-    }
-    if (!S.runDoneToday) setTimeout(checkRun, 60 * 60 * 1000);
+function scheduleRunPings(){
+  function checkRun(){
+    if(!S.runDoneToday&&inWindow()&&new Date().getHours()>=10) sendNotif('🏃‍♂️ Run Time','10 minutes. Treadmill. Go. You\'ll feel different after.','run');
+    if(!S.runDoneToday) setTimeout(checkRun,3600000);
   }
-  scheduleDailyAt(10, 0, checkRun);
+  scheduleDailyAt(10,0,checkRun);
 }
 
-// ══════════════════════════════════════════════════
-// CLOCK
-// ══════════════════════════════════════════════════
-
-function tick() {
-  const now = new Date();
-  document.getElementById('clock').textContent =
-    now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  document.getElementById('datestr').textContent =
-    now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+// ── CLOCK / NAV / FLASH ──
+function tick(){
+  const now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('datestr').textContent=now.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});
 }
 
-// ══════════════════════════════════════════════════
-// NAV / FLASH / UTILS
-// ══════════════════════════════════════════════════
-
-function switchView(name, el) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
+function switchView(name,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
   el.closest('.nav-item').classList.add('active');
 }
 
-function flash(msg) {
-  const el = document.createElement('div');
-  el.className = 'flash';
-  el.textContent = msg;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1200);
+function flash(msg){
+  const el=document.createElement('div');el.className='flash';el.textContent=msg;
+  document.body.appendChild(el);setTimeout(()=>el.remove(),1200);
 }
 
-// ══════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════
+// ── INIT ──
+dayRollover();buildQueue();tick();setInterval(tick,1000);
+updateAll();renderToggles();nextPrompt();
+document.getElementById('encourage-text').textContent=ENCOURAGEMENTS[eIdx];
 
-dayRollover();
-buildQueue();
-tick();
-setInterval(tick, 1000);
-updateAll();
-renderToggles();
-nextPrompt();
-document.getElementById('encourage-text').textContent = ENCOURAGEMENTS[encourageIdx];
-
-if ('Notification' in window && Notification.permission === 'granted') {
-  document.getElementById('notif-banner').innerHTML = `
-    <div class="notif-icon">✅</div>
-    <div class="notif-text">
-      <strong>Prompts active 8am–9pm</strong>
-      <small>Mirroring to Apple Watch automatically</small>
-    </div>`;
+if('Notification' in window&&Notification.permission==='granted'){
+  document.getElementById('notif-banner').innerHTML=`<div class="notif-icon">✅</div><div class="notif-text"><strong>Prompts active 8am–9pm</strong><small>Mirroring to Apple Watch</small></div>`;
   scheduleAll();
 }
 
-// close modal on bg click
-document.getElementById('step-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeStepModal();
-});
-
+window.addEventListener('resize',()=>{if(S.weightLog.length) drawGraph(S.weightLog);});
 </script>
 </body>
 </html>
