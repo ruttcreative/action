@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Action(able)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface2: #1c1c26;
+  --border: #2a2a38;
+  --text: #e8e6f0;
+  --muted: #6b6880;
+  --accent: #c8ff47;
+  --accent2: #ff6b47;
+  --accent3: #47c8ff;
+  --accent4: #ff47c8;
+  --streak: #ffb347;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Fraunces', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+.app {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.date-time {
+  text-align: right;
+}
+
+.time-display {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.date-display {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* STREAK BAR */
+.streak-bar {
+  margin: 16px 20px;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.streak-item {
+  text-align: center;
+}
+
+.streak-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--streak);
+}
+
+.streak-label {
+  font-size: 0.6rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'DM Mono', monospace;
+  margin-top: 2px;
+}
+
+.streak-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
+
+/* PROMPT CARD */
+.prompt-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+
+.prompt-card {
+  background: var(--surface);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.prompt-card:active { transform: scale(0.98); }
+
+.prompt-type-bar {
+  height: 4px;
+  width: 100%;
+}
+
+.prompt-inner {
+  padding: 16px 18px 14px;
+}
+
+.prompt-category {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.prompt-text {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.prompt-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.prompt-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-done {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-done:active { transform: scale(0.97); opacity: 0.8; }
+
+.btn-skip {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.btn-skip:hover { border-color: var(--muted); }
+
+.btn-next {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+/* PROGRESS DOTS */
+.progress-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 12px 0 16px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dot.done { background: var(--accent); transform: scale(1.2); }
+.dot.active { background: var(--muted); }
+
+/* HABIT GRID */
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+.habit-grid {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.habit-card {
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.1s;
+  position: relative;
+  overflow: hidden;
+}
+
+.habit-card:active { transform: scale(0.97); }
+.habit-card.completed { border-color: var(--accent); }
+.habit-card.completed::after {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.habit-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.habit-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.habit-streak {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--streak);
+}
+
+/* ENCOURAGEMENT */
+.encouragement {
+  margin: 0 20px 16px;
+  background: var(--surface2);
+  border-radius: 16px;
+  border-left: 3px solid var(--accent);
+  padding: 12px 14px;
+}
+
+.encourage-text {
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.encourage-attr {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* NOTIFICATION BANNER */
+.notif-banner {
+  margin: 0 20px 16px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.notif-icon { font-size: 1.2rem; }
+.notif-text { font-size: 0.8rem; line-height: 1.3; }
+.notif-text strong { color: var(--accent); font-style: normal; }
+.notif-text span { color: var(--muted); font-size: 0.7rem; display: block; margin-top: 2px; font-family: 'DM Mono', monospace; }
+
+/* NAV */
+.nav {
+  margin-top: auto;
+  padding: 12px 20px 28px;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  bottom: 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.nav-item.active { opacity: 1; }
+.nav-icon { font-size: 1.3rem; }
+.nav-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* VIEWS */
+.view { display: none; }
+.view.active { display: block; }
+
+/* HISTORY VIEW */
+.history-list {
+  padding: 0 20px;
+}
+
+.history-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-name { font-size: 0.88rem; }
+.history-time { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); }
+.history-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: var(--surface2);
+  color: var(--accent);
+}
+
+/* SETTINGS VIEW */
+.settings-section {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.settings-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.setting-name { font-size: 0.88rem; }
+.setting-sub { font-size: 0.7rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+
+.toggle {
+  width: 44px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--border);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+  flex-shrink: 0;
+}
+
+.toggle.on { background: var(--accent); }
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s;
+}
+
+.toggle.on::after { transform: translateX(18px); }
+
+/* COMPLETION FLASH */
+@keyframes flash {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+.flash-msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  padding: 16px 32px;
+  border-radius: 16px;
+  z-index: 999;
+  animation: flash 1.2s ease forwards;
+  pointer-events: none;
+  letter-spacing: 2px;
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HOME VIEW -->
+  <div class="view active" id="view-home">
+
+    <div class="header">
+      <div class="logo">Action<span>(able)</span></div>
+      <div class="date-time">
+        <div class="time-display" id="clock">--:--</div>
+        <div class="date-display" id="datestr">--</div>
+      </div>
+    </div>
+
+    <div class="streak-bar">
+      <div class="streak-item">
+        <div class="streak-num" id="day-streak">0</div>
+        <div class="streak-label">Day Streak</div>
+      </div>
+      <div class="streak-divider"></div>
+      <div class="streak-item">
+        <div class="streak-num" id="done-today">0</div>
+        <div class="streak-label">Done Today</div>
+      </div>
+      <div class="streak-divider"></div>
+      <div class="streak-item">
+        <div class="streak-num" id="week-count">0</div>
+        <div class="streak-label">This Week</div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATION ENABLE -->
+    <div class="notif-banner" id="notif-banner" onclick="enableNotifications()">
+      <div class="notif-icon">🔔</div>
+      <div class="notif-text">
+        <strong>Enable smart prompts</strong>
+        <span>Tap to allow notifications · mirrors to Apple Watch</span>
+      </div>
+    </div>
+
+    <!-- CURRENT PROMPT -->
+    <div class="prompt-section">
+      <div class="prompt-card" id="prompt-card">
+        <div class="prompt-type-bar" id="prompt-bar"></div>
+        <div class="prompt-inner">
+          <div class="prompt-category" id="prompt-cat">Loading...</div>
+          <div class="prompt-text" id="prompt-text">Getting your first prompt ready...</div>
+          <div class="prompt-sub" id="prompt-sub"></div>
+          <div class="prompt-actions">
+            <button class="btn-done" id="btn-done" onclick="markDone()">Done ✓</button>
+            <button class="btn-skip" onclick="skipPrompt()">Skip</button>
+            <button class="btn-next" onclick="nextPrompt()">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-dots" id="progress-dots"></div>
+
+    <!-- ENCOURAGEMENT -->
+    <div class="encouragement" id="encouragement">
+      <div class="encourage-text" id="encourage-text"></div>
+      <div class="encourage-attr">— your coach</div>
+    </div>
+
+    <!-- HABIT GRID -->
+    <div class="section-label">Today's Habits</div>
+    <div class="habit-grid" id="habit-grid"></div>
+
+  </div>
+
+  <!-- HISTORY VIEW -->
+  <div class="view" id="view-history">
+    <div class="header" style="margin-bottom:16px">
+      <div class="logo">History</div>
+    </div>
+    <div class="section-label">Completed Today</div>
+    <div class="history-list" id="history-list">
+      <div style="color:var(--muted);font-style:italic;font-size:0.85rem;padding:20px 0">Nothing yet — go get one.</div>
+    </div>
+  </div>
+
+  <!-- SETTINGS VIEW -->
+  <div class="view" id="view-settings">
+    <div class="header" style="margin-bottom:16px">
+      <div class="logo">Settings</div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-title">Active Hours</div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-name">Start Time</div>
+          <div class="setting-sub">Prompts begin</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.9rem;color:var(--accent)">8:00 AM</div>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-name">End Time</div>
+          <div class="setting-sub">Prompts stop</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.9rem;color:var(--accent)">9:00 PM</div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-title">Prompt Types</div>
+      <div id="toggle-list"></div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-title">Notifications</div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-name">Smart Prompts</div>
+          <div class="setting-sub">Appears on phone + Watch</div>
+        </div>
+        <button class="toggle on" id="notif-toggle" onclick="toggleNotif(this)"></button>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-name">Frequency</div>
+          <div class="setting-sub">How often you're nudged</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--accent)">Every 45–90 min</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-item active" onclick="switchView('home', this)">
+      <div class="nav-icon">⚡</div>
+      <div class="nav-label">Today</div>
+    </div>
+    <div class="nav-item" onclick="switchView('history', this)">
+      <div class="nav-icon">📋</div>
+      <div class="nav-label">Log</div>
+    </div>
+    <div class="nav-item" onclick="switchView('settings', this)">
+      <div class="nav-icon">⚙️</div>
+      <div class="nav-label">Settings</div>
+    </div>
+  </nav>
+
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const PROMPTS = {
+  move: {
+    label: '🏃 Move',
+    color: '#c8ff47',
+    items: [
+      { text: "Hip Flexor Stretch", sub: "Kneel on one knee, push hips forward, hold 30 seconds each side. Your desk is slowly killing your hips — fight back.", dur: "2 min" },
+      { text: "Thoracic Rotation", sub: "Sit or stand, arms crossed. Rotate your upper back left and right 10x each. Undoes hours of hunching.", dur: "90 sec" },
+      { text: "Wall Sit", sub: "Back flat against wall, thighs parallel. Hold as long as you can. Beat your last time.", dur: "60 sec" },
+      { text: "Dead Hang", sub: "Find a bar, doorframe, or anything sturdy. Hang for 30–60 seconds. Decompresses your spine instantly.", dur: "60 sec" },
+      { text: "10 Goblet Squat + Reach", sub: "Hold anything weighted, squat deep, reach one arm up at the bottom. Mobility gold.", dur: "2 min" },
+      { text: "Shoulder Circles + Neck Rolls", sub: "Roll your shoulders back 10x, then slowly circle your neck. Do it now — you're carrying tension you don't even feel.", dur: "90 sec" },
+      { text: "10 Hip Hinges", sub: "Feet hip-width, push your hips back like you're closing a drawer with your butt. Slow and controlled.", dur: "90 sec" },
+      { text: "Calf Raises", sub: "Stand on the edge of a step if you can, 15 slow raises. Blood flow. Ankles happy.", dur: "60 sec" },
+      { text: "Farmer Carry March", sub: "Grab two heavy things — dumbbells, bags, whatever. Walk with high knees for 30 seconds. Shrug at the top.", dur: "60 sec" },
+      { text: "Wrist & Forearm Stretch", sub: "Extend arm, pull fingers back gently, hold 20 seconds. Then reverse. You type too much. This matters.", dur: "60 sec" },
+    ]
+  },
+  mind: {
+    label: '🧠 Reflect',
+    color: '#47c8ff',
+    items: [
+      { text: "Name one thing going right", sub: "Not big things. Small ones count more. What's one thing that happened today that didn't suck?", dur: "1 min" },
+      { text: "What are you grateful for right now?", sub: "Try to name something you haven't named before. Look closer.", dur: "1 min" },
+      { text: "Check in with your body", sub: "Close your eyes. Where are you holding tension? Jaw, shoulders, chest? Breathe into it intentionally.", dur: "2 min" },
+      { text: "Say something kind to yourself", sub: "You're carrying a lot. What would you say to a friend in your situation? Say that to yourself.", dur: "1 min" },
+      { text: "What's one win from today?", sub: "Doesn't have to be big. You showed up. You handled something. Name it.", dur: "1 min" },
+      { text: "What would tomorrow's you thank today's you for?", sub: "One small thing you can do right now that future you will appreciate.", dur: "2 min" },
+      { text: "3 deep breaths", sub: "In for 4 counts, hold for 4, out for 6. Three times. Your nervous system will literally downshift.", dur: "60 sec" },
+      { text: "What's draining you most right now?", sub: "Just name it. You don't have to fix it. Awareness is the first move.", dur: "1 min" },
+    ]
+  },
+  house: {
+    label: '🏠 Environment',
+    color: '#ff6b47',
+    items: [
+      { text: "Look around and pick one thing", sub: "One dish, one piece of clutter, one surface wiped. Ownership, not obligation. Just one.", dur: "5 min" },
+      { text: "Trash sweep", sub: "Walk through, grab any trash you see, done. Takes 2 minutes and makes the place feel better immediately.", dur: "2 min" },
+      { text: "Clear one surface", sub: "Counter, table, desk. Clear it completely. Visual calm creates mental calm.", dur: "3 min" },
+      { text: "Start a load of laundry", sub: "Throw it in. It runs itself. You just have to start it.", dur: "2 min" },
+      { text: "Quick kitchen reset", sub: "Dishes in the sink, counter wiped, done. Not perfect. Just reset.", dur: "5 min" },
+      { text: "Put 10 things away", sub: "Count to 10. One item at a time. Go.", dur: "3 min" },
+    ]
+  },
+  connect: {
+    label: '❤️ Connect',
+    color: '#ff47c8',
+    items: [
+      { text: "Text someone you haven't talked to in a while", sub: "Doesn't need to be deep. 'Thinking of you' is enough. Connection is a muscle.", dur: "2 min" },
+      { text: "Say something specific to your wife", sub: "Not 'how was your day.' Something you noticed. Something real.", dur: "1 min" },
+      { text: "Put the phone down and just be near your kid", sub: "Physically present, screen away, even for 5 minutes. He'll remember this more than you know.", dur: "5 min" },
+      { text: "Check in on a friend", sub: "Who haven't you heard from in too long? A voice note, a text, anything.", dur: "2 min" },
+      { text: "Tell someone they did a good job today", sub: "Your kid, your wife, a colleague. Say it out loud or in a message. Mean it.", dur: "1 min" },
+      { text: "Put your phone in another room for 15 minutes", sub: "Just exist. The world will not end. You might actually breathe.", dur: "15 min" },
+    ]
+  },
+  water: {
+    label: '💧 Hydrate',
+    color: '#47ffb8',
+    items: [
+      { text: "Drink a full glass of water", sub: "Right now. Not later. Stand up, get it, drink it. Dehydration is making everything worse.", dur: "1 min" },
+      { text: "Water check", sub: "Have you had enough today? Most people mistake dehydration for tiredness. Glass. Now.", dur: "1 min" },
+      { text: "Glass of water before you sit back down", sub: "Attach it to the action. Stand up → water → sit. Simple.", dur: "1 min" },
+    ]
+  }
+};
+
+const ENCOURAGEMENTS = [
+  "You showed up today. That's the whole game right there.",
+  "Two rounds counts. Imperfect action beats perfect inaction every single time.",
+  "You're not behind. You're building. There's a difference.",
+  "The fact that you feel guilty means you care. That's not a flaw. That's love.",
+  "Small moves, repeated. That's all this is.",
+  "You're doing more than you think. Keep going.",
+  "One thing at a time. You don't have to fix everything today.",
+  "The version of you that felt alive and strong? He's still in there. He just needs some fuel.",
+  "Today doesn't have to be perfect. It just has to count.",
+  "Rest is not quitting. Recovery is part of the work.",
+  "You're a good dad. The worry itself is proof of that.",
+  "Progress isn't linear. Keep showing up anyway.",
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+
+let state = JSON.parse(localStorage.getItem('actionable_state') || 'null') || {
+  dayStreak: 0,
+  weekCount: 0,
+  doneToday: 0,
+  lastActiveDate: null,
+  habits: {
+    move: { streak: 0, doneToday: false },
+    mind: { streak: 0, doneToday: false },
+    house: { streak: 0, doneToday: false },
+    connect: { streak: 0, doneToday: false },
+    water: { streak: 0, doneToday: false },
+  },
+  history: [],
+  toggles: { move: true, mind: true, house: true, connect: true, water: true },
+  promptIndex: 0,
+  currentCategory: null,
+};
+
+let currentPrompt = null;
+let promptQueue = [];
+let notifInterval = null;
+let notifEnabled = false;
+
+function saveState() {
+  localStorage.setItem('actionable_state', JSON.stringify(state));
+}
+
+function checkDayRollover() {
+  const today = new Date().toDateString();
+  if (state.lastActiveDate !== today) {
+    if (state.doneToday > 0) {
+      state.dayStreak++;
+      state.weekCount += state.doneToday;
+    }
+    state.doneToday = 0;
+    state.lastActiveDate = today;
+    Object.keys(state.habits).forEach(k => {
+      if (!state.habits[k].doneToday) state.habits[k].streak = 0;
+      state.habits[k].doneToday = false;
+    });
+    state.history = [];
+    saveState();
+  }
+}
+
+// ─── PROMPTS ─────────────────────────────────────────────────────────────────
+
+function buildQueue() {
+  const cats = Object.keys(PROMPTS).filter(k => state.toggles[k]);
+  promptQueue = [];
+  cats.forEach(cat => {
+    PROMPTS[cat].items.forEach((item, i) => {
+      promptQueue.push({ cat, item, i });
+    });
+  });
+  // shuffle
+  for (let i = promptQueue.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [promptQueue[i], promptQueue[j]] = [promptQueue[j], promptQueue[i]];
+  }
+}
+
+function showPrompt(p) {
+  currentPrompt = p;
+  const cfg = PROMPTS[p.cat];
+  document.getElementById('prompt-cat').textContent = cfg.label;
+  document.getElementById('prompt-cat').style.color = cfg.color;
+  document.getElementById('prompt-bar').style.background = cfg.color;
+  document.getElementById('prompt-text').textContent = p.item.text;
+  document.getElementById('prompt-sub').textContent = p.item.sub;
+  document.getElementById('btn-done').style.background = cfg.color;
+  document.getElementById('btn-done').style.color = '#0a0a0f';
+  updateDots();
+}
+
+function updateDots() {
+  const dots = document.getElementById('progress-dots');
+  const cats = Object.keys(PROMPTS).filter(k => state.toggles[k]);
+  dots.innerHTML = cats.map(cat =>
+    `<div class="dot ${state.habits[cat].doneToday ? 'done' : (currentPrompt && currentPrompt.cat === cat ? 'active' : '')}"></div>`
+  ).join('');
+}
+
+function nextPrompt(auto) {
+  if (!promptQueue.length) buildQueue();
+  const p = promptQueue.shift();
+  showPrompt(p);
+  if (!auto) showEncouragement();
+}
+
+function skipPrompt() {
+  if (currentPrompt) promptQueue.push(currentPrompt);
+  nextPrompt();
+}
+
+function markDone() {
+  if (!currentPrompt) return;
+  const cat = currentPrompt.cat;
+  state.doneToday++;
+  state.habits[cat].doneToday = true;
+  state.habits[cat].streak++;
+  state.history.unshift({
+    text: currentPrompt.item.text,
+    cat: PROMPTS[cat].label,
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  });
+  saveState();
+  updateStats();
+  renderHabits();
+  renderHistory();
+  showFlash('DONE! 💪');
+  nextPrompt(true);
+  showEncouragement();
+}
+
+function showFlash(msg) {
+  const el = document.createElement('div');
+  el.className = 'flash-msg';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1200);
+}
+
+function showEncouragement() {
+  const r = ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
+  document.getElementById('encourage-text').textContent = r;
+}
+
+// ─── STATS ───────────────────────────────────────────────────────────────────
+
+function updateStats() {
+  document.getElementById('day-streak').textContent = state.dayStreak;
+  document.getElementById('done-today').textContent = state.doneToday;
+  document.getElementById('week-count').textContent = state.weekCount + state.doneToday;
+}
+
+// ─── HABITS ─────────────────────────────────────────────────────────────────
+
+function renderHabits() {
+  const grid = document.getElementById('habit-grid');
+  grid.innerHTML = Object.keys(PROMPTS).map(cat => {
+    const cfg = PROMPTS[cat];
+    const h = state.habits[cat];
+    return `
+      <div class="habit-card ${h.doneToday ? 'completed' : ''}" 
+           onclick="jumpToCategory('${cat}')"
+           style="${h.doneToday ? `border-color:${cfg.color}40` : ''}">
+        <div class="habit-icon">${cfg.label.split(' ')[0]}</div>
+        <div class="habit-name" style="color:${cfg.color}">${cfg.label.split(' ').slice(1).join(' ')}</div>
+        <div class="habit-streak">🔥 ${h.streak} day streak</div>
+      </div>`;
+  }).join('');
+}
+
+function jumpToCategory(cat) {
+  const idx = promptQueue.findIndex(p => p.cat === cat);
+  if (idx > -1) {
+    const p = promptQueue.splice(idx, 1)[0];
+    showPrompt(p);
+  } else {
+    const items = PROMPTS[cat].items;
+    const item = items[Math.floor(Math.random() * items.length)];
+    showPrompt({ cat, item });
+  }
+  switchView('home', document.querySelector('.nav-item'));
+}
+
+// ─── HISTORY ─────────────────────────────────────────────────────────────────
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  if (!state.history.length) {
+    list.innerHTML = '<div style="color:var(--muted);font-style:italic;font-size:0.85rem;padding:20px 0">Nothing yet — go get one.</div>';
+    return;
+  }
+  list.innerHTML = state.history.map(h => `
+    <div class="history-item">
+      <div>
+        <div class="history-name">${h.text}</div>
+        <div class="history-time">${h.time}</div>
+      </div>
+      <div class="history-badge">${h.cat.split(' ')[0]}</div>
+    </div>`).join('');
+}
+
+// ─── TOGGLES ─────────────────────────────────────────────────────────────────
+
+function renderToggles() {
+  const list = document.getElementById('toggle-list');
+  list.innerHTML = Object.keys(PROMPTS).map(cat => {
+    const cfg = PROMPTS[cat];
+    return `
+      <div class="setting-row">
+        <div>
+          <div class="setting-name">${cfg.label}</div>
+        </div>
+        <button class="toggle ${state.toggles[cat] ? 'on' : ''}" 
+                onclick="toggleCategory('${cat}', this)"></button>
+      </div>`;
+  }).join('');
+}
+
+function toggleCategory(cat, btn) {
+  state.toggles[cat] = !state.toggles[cat];
+  btn.classList.toggle('on');
+  buildQueue();
+  saveState();
+}
+
+function toggleNotif(btn) {
+  btn.classList.toggle('on');
+}
+
+// ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
+
+async function enableNotifications() {
+  if (!('Notification' in window)) {
+    alert('Add this page to your home screen for notification support.');
+    return;
+  }
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    notifEnabled = true;
+    document.getElementById('notif-banner').innerHTML = `
+      <div class="notif-icon">✅</div>
+      <div class="notif-text">
+        <strong>Prompts active 8am–9pm</strong>
+        <span>Will mirror to Apple Watch automatically</span>
+      </div>`;
+    scheduleNotifications();
+  }
+}
+
+function scheduleNotifications() {
+  if (notifInterval) clearInterval(notifInterval);
+  const minMs = 45 * 60 * 1000;
+  const maxMs = 90 * 60 * 1000;
+
+  function sendNext() {
+    const now = new Date();
+    const h = now.getHours();
+    if (h >= 8 && h < 21) {
+      const cats = Object.keys(PROMPTS).filter(k => state.toggles[k]);
+      const cat = cats[Math.floor(Math.random() * cats.length)];
+      const items = PROMPTS[cat].items;
+      const item = items[Math.floor(Math.random() * items.length)];
+      new Notification(`Action(able) · ${PROMPTS[cat].label}`, {
+        body: item.text,
+        icon: '⚡',
+        badge: '⚡',
+        tag: 'actionable-prompt'
+      });
+    }
+    const delay = minMs + Math.random() * (maxMs - minMs);
+    setTimeout(sendNext, delay);
+  }
+
+  const delay = (45 + Math.random() * 45) * 60 * 1000;
+  setTimeout(sendNext, delay);
+}
+
+// ─── CLOCK ───────────────────────────────────────────────────────────────────
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('datestr').textContent =
+    now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+}
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+
+function switchView(name, el) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  el.closest('.nav-item').classList.add('active');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+checkDayRollover();
+buildQueue();
+updateClock();
+setInterval(updateClock, 1000);
+updateStats();
+renderHabits();
+renderHistory();
+renderToggles();
+nextPrompt(true);
+showEncouragement();
+
+// Check if notifications already granted
+if ('Notification' in window && Notification.permission === 'granted') {
+  notifEnabled = true;
+  document.getElementById('notif-banner').innerHTML = `
+    <div class="notif-icon">✅</div>
+    <div class="notif-text">
+      <strong>Prompts active 8am–9pm</strong>
+      <span>Mirroring to Apple Watch automatically</span>
+    </div>`;
+  scheduleNotifications();
+}
+
+</script>
+</body>
+</html>
